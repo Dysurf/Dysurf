@@ -1,0 +1,14 @@
+1 char[64] --> "Polarizations"
+1 int32 --> version 1 
+1 char[1024] --> comment
+1 int32 --> Dimension D
+1 int32 --> Number of atoms in the basis, N_b (same as number of basis vectors)
+1 int32 --> Number of Qs, N_q
+double[N_q* (N_b*D) * N_b * (D*2)] --> The polarization vectors go here. 
+   v(   0,     0,   0) --> Re(x0) Im(x0) Re(x1) Im(x1) ... Re(xD) Im(xD)
+   v(   0,     0,   1) --> Re(x0) Im(x0) Re(x1) Im(x1) ... Re(xD) Im(xD)
+   v( N_q, N_b*D, N_b) --> Re(x0) Im(x0) Re(x1) Im(x1) ... Re(xD) Im(xD)
+
+
+An eigenvector is made up of N_b polarization vectors (each D-dimensional) in a column. 
+The eigenvector should be normalized to 1.0.

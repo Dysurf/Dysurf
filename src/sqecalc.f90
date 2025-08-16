@@ -1,4 +1,5 @@
 ! Dysurf, a program for simulating four-dimensional dynamical structure factors
+! Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 ! Copyright (C) 2020-2021 Changpeng Lin <changpeng.lin@epfl.ch>
 ! Copyright (C) 2020-2021 Jiawang Hong <hongjw@bit.edu.cn>
 !
@@ -180,5 +181,37 @@ contains
     end if
   
   end subroutine sqeForGivenQ
+
+  ! This subroutine give Mass for experiment(advice)
+  ! We calculate as 1cm^2,so the total cross section should be 0.1cm^2
+  subroutine given_Mass_reference(mass_ref,sigma_abs_total)
+          use variables, only:ntypes,natoms,masses2,scatt_xs2,abs_xs2
+      use constants, only: afj,barn
+      implicit none
+          real(kind=8), intent(out) ::mass_ref,sigma_abs_total
+          real(kind=8) ::mass_molecule, tcro_molecule,abscro_molecule
+          real(kind=8) :: ii
+
+          mass_molecule=0.d0
+          tcro_molecule=0.d0
+          tcro_molecule=0.d0
+      ! write(*,*) scatt_xs2
+      ! write(*,*) abs_xs2
+      ! first of all,get mass, etc
+        do ii = 1, natoms
+            mass_molecule = masses2(ii)+mass_molecule
+            tcro_molecule = scatt_xs2(ii)+tcro_molecule
+            abscro_molecule= abs_xs2(ii)+abscro_molecule
+        end do
+         write(*,*) 'Relative molecular mass(MW) is            ', mass_molecule
+         write(*,*) 'total atoms_scatt_totoal_cross_section is ', tcro_molecule
+                write(*,*) 'abscro_molecule is                        ', abscro_molecule
+         ! Now, we will get mass_ref (0.1cm^2)
+            mass_ref= 0.1d0/(tcro_molecule*barn*(1.d0/mass_molecule)*(afj))
+         ! Now, we will get the total absorption
+            sigma_abs_total=(abscro_molecule)*barn*(1.d0/mass_molecule)*(afj)*mass_ref
+          write(*,*) 'Recommend mass of every 1 cm^2            ', mass_ref
+          write(*,*) 'Total absobtion of every 1cm^2            ', sigma_abs_total
+  end subroutine
 
 end module sqe_calculator

@@ -1,4 +1,5 @@
 ! Dysurf, a program for simulating four-dimensional dynamical structure factors
+! Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 ! Copyright (C) 2020-2021 Changpeng Lin <changpeng.lin@epfl.ch>
 ! Copyright (C) 2020-2021 Jiawang Hong <hongjw@bit.edu.cn>
 !

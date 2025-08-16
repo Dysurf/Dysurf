@@ -1,4 +1,5 @@
 ! Dysurf, a program for simulating four-dimensional dynamical structure factors
+! Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 ! Copyright (C) 2020-2021 Changpeng Lin <changpeng.lin@epfl.ch>
 ! Copyright (C) 2020-2021 Jiawang Hong <hongjw@bit.edu.cn>
 !
@@ -46,6 +47,10 @@ module control
   real(kind=8), allocatable :: masses(:)
   ! atomic masses corresponding to each element
   real(kind=8), allocatable :: coh_b(:)
+  ! coherent neutron scattering length corresponding to each element
+  real(kind=8), allocatable :: scatt_xs(:)
+  ! total neutron scattering cross section corresponding to each element
+  real(kind=8), allocatable :: abs_xs(:)
   ! coherent neutron scattering length corresponding to each element
   real(kind=8), allocatable :: xray_b(:)
   ! scattering length of X-ray scattering corresponding to each element
@@ -149,6 +154,10 @@ module phon
   real(kind=8), allocatable :: masses2(:)
   ! atomic masses corresponding to each atom
   real(kind=8), allocatable :: coh_b2(:)
+  ! coherent neutron scattering length corresponding to each atom
+  real(kind=8), allocatable :: scatt_xs2(:)
+  ! total neutron scattering cross section corresponding to each element
+  real(kind=8), allocatable :: abs_xs2(:)
   ! coherent neutron scattering length corresponding to each atom
   real(kind=8), allocatable :: xray_b2(:)
   ! scattering length of X-ray scattering corresponding to each atom

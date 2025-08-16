@@ -6,11 +6,13 @@
 # We recommend to use Intel fortran compiler.
 #-----------------------------------------------
 
-FC = ifort
-FFLAGS = -traceback -debug -O2 -static_intel
+FC = ifx
+FFLAGS = -traceback -debug -O2 -static-intel
 
 FCL = ${FC}
 LDFLAGS = -L/usr/lib64 -mkl
+#LDFLAGS= -llapack -lblas
+
 
 LAPACK = 
 LIBS = $(LAPACK)

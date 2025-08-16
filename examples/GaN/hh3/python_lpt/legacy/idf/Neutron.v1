@@ -1,0 +1,17 @@
+1 char[64] --> "Neutron"
+1 int32 --> version 1 
+1 char[1024] --> comment
+1 int64 --> Number of neutrons: N
+double[N*10] --> neutrons
+	Neutron 0
+	Neutron 1
+	....
+	Neutron N-1
+
+    for each Neutron:
+    	x,y,z,vx,vy,vz,s1,s2,time-of-flight,probability
+
+units:
+	x,y,z: meter
+	vx,vy,vz: meter/second
+	time-of-flight: second

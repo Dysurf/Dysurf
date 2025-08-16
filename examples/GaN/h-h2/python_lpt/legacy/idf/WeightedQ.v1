@@ -1,0 +1,14 @@
+1 char[64] --> "WeightedQ"
+1 int32 --> version 1 
+1 char[1024] --> comment
+1 int32 --> Dimension D
+1 int32 --> Number of Q, N_q
+double[N_q*(D+1)] --> The Q go here, each with its weight.
+                   Q[ 1 ]_x1 Q[ 1 ]_x2 ... Q[ 1 ]_xD  Weight[ 1 ]
+                   Q[ 2 ]_x1 Q[ 2 ]_x2 ... Q[ 2 ]_xD  Weight[ 2 ]
+                     ...
+                   Q[N_q]_x1 Q[N_q]_x2 ... Q[N_q]_xD  Weight[N_q]
+
+Qs units should be m^-1 and they should be coordinates with respect to a 
+cartesian frame.  The weights are relative, and need not add up to 1.0.
+

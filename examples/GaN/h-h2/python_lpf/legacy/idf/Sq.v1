@@ -1,0 +1,9 @@
+1 char[64] --> "Sq"
+1 int32 --> version 1 
+1 char[1024] --> comment
+1 int32 --> Number of Q, N_q
+double[N_q] --> The values of S(Q) go here.
+    S( 0 )
+    S( 1 )
+    ...
+    S(N_q)

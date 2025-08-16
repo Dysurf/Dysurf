@@ -1,4 +1,5 @@
 ! Dysurf, a program for simulating four-dimensional dynamical structure factors
+! Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 ! Copyright (C) 2020-2021 Changpeng Lin <changpeng.lin@epfl.ch>
 ! Copyright (C) 2020-2021 Jiawang Hong <hongjw@bit.edu.cn>
 !
@@ -27,7 +28,7 @@ contains
   subroutine input_parser()
     
     use variables
-    use constants, only: periodic_table, atomic_masses, scatt_b, tpi, eps5
+    use constants, only: periodic_table, atomic_masses, scatt_b, tpi, eps5,scatt_totoal_cross_section,scatt_absob_cross_section
     use func, only: cross_prod
     use iso_fortran_env, only: error_unit
     implicit none
@@ -44,7 +45,7 @@ contains
         masses, coh_b, xray_b, temp, temp_min, temp_max, temp_step, qmesh, &
         path, elements, nonanalytic, lneutron, lxray, write_rmsd, order, &
         xm, paras, functype, lresfunc, degauss, read_rmsd, filename_rmsd, l4d, &
-        aff_wk, aff_a, aff_b, aff_c, espresso, clatvec, lphase, ltds, filename_omega
+        aff_wk, aff_a, aff_b, aff_c, espresso, clatvec, lphase, ltds, filename_omega, scatt_xs, abs_xs
     
     ! read the basic namelist
     ! ntypes, natoms, nsize, nat, path, elements, q0 must be specified in input file
@@ -61,8 +62,8 @@ contains
     end if
     allocate(elements(ntypes), nat(ntypes), positions(3,natoms), born(3,3,natoms), &
              masses(ntypes), coh_b(ntypes), xray_b(ntypes), masses2(natoms), &
-             coh_b2(natoms), xray_b2(natoms), aff_a(5,ntypes), aff_b(5,ntypes), aff_c(ntypes))
-    
+             coh_b2(natoms), xray_b2(natoms), aff_a(5,ntypes), aff_b(5,ntypes), aff_c(ntypes),scatt_xs(ntypes),abs_xs(ntypes),scatt_xs2(natoms),abs_xs2(natoms))
+
     ! set the defaults
     ne = 1000
     deltaE = 0.01
@@ -94,6 +95,8 @@ contains
     masses = 0.d0
     coh_b = 0.d0
     xray_b = 0.d0
+    scatt_xs=0.d0
+    abs_xs=0.d0
     epsilon = 0.d0
     epsilon(1,1) = 1.d0
     epsilon(2,2) = 1.d0
@@ -213,7 +216,7 @@ contains
        end do
        if (jj .eq. (size(periodic_table)+1)) then
           write(error_unit, *) "Error in input_parser: specified elements not in current SQE program,&
-                               & please manually set the corresponding masses, coh_b, xray_b."
+                               & please manually set the corresponding masses, coh_b, xray_b,scatt_xs,abs_xs."
           stop
        end if
     end do
@@ -232,6 +235,18 @@ contains
           xray_b(ii) = dble(zid(ii))
        end do
     end if
+    !get total cross section
+    if (all(scatt_xs .lt. eps5).and. lneutron) then
+       do ii = 1, ntypes
+          scatt_xs(ii) = scatt_totoal_cross_section(zid(ii))
+       end do
+    end if
+    !get absorb cross section
+    if (all(abs_xs .lt. eps5) .and. lneutron) then
+       do ii = 1, ntypes
+          abs_xs(ii) = scatt_absob_cross_section(zid(ii))
+       end do
+    end if
     deallocate(zid)
     
     kk = 0
@@ -241,10 +256,12 @@ contains
           masses2(kk) = masses(ii)
           coh_b2(kk) = coh_b(ii)
           xray_b2(kk) = xray_b(ii)
+          scatt_xs2(kk)=scatt_xs(ii)
+          abs_xs2(kk)=abs_xs(ii)
        end do
     end do
 
-    deallocate(masses, coh_b, xray_b)
+    deallocate(masses, coh_b, xray_b, scatt_xs,abs_xs)
   
   end subroutine input_parser
 

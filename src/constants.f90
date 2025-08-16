@@ -1,4 +1,5 @@
 ! Dysurf, a program for simulating four-dimensional dynamical structure factors
+! Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 ! Copyright (C) 2020-2021 Changpeng Lin <changpeng.lin@epfl.ch>
 ! Copyright (C) 2020-2021 Jiawang Hong <hongjw@bit.edu.cn>
 !
@@ -42,6 +43,8 @@ module constants
   real(kind=8), parameter :: amu = 1.6605402E-27  ! kg
   real(kind=8), parameter :: ev = 1.60217733E-19 ! J
   real(kind=8), parameter :: vdc = 8.854187817E-12 ! F/m, vacuum dielectric constant
+  real(kind=8), parameter :: afj = 6.02E23 !avogadro's number
+  real(kind=8), parameter :: barn = 1E-24 !cm^2
 
   ! Unit conversion factors
   real(kind=8), parameter :: ang2m = 1.0d-10
@@ -105,5 +108,27 @@ module constants
   157.25,158.92535,162.500,164.93032,167.259,168.93421,173.054,174.9668,&   !Gd->Lu
   178.49,180.94788,183.84,186.207,190.23,192.217,195.084,196.966569,200.59,204.3833,207.2,208.98040,209,210,222,&   !Hf->Rn
   223,226,227,232.03806,231.0358,238.02891,237,244,243,247]   !Fr->Cm
+
+  ! These data from https://www.ncnr.nist.gov/resources/n-lengths/list.html
+  ! Note that； Some data donnot include, I replaced them zero(Data on some radioactive elements are inaccurate)
+  real(kind=8), parameter :: scatt_totoal_cross_section(96) = [real(kind=8) ::&
+  82.02, 1.34,&   !H->He
+  1.37,7.63,5.24,5.551,11.51,4.232,4.018,2.628,&   !Li->Ne
+  3.28,3.71,1.503,2.167,3.312,1.026,16.8,0.683,&   !Na->Ar
+  1.96,2.83,23.5,4.35,5.1,3.49,2.15,11.62,5.6,18.5,8.03,4.131,6.83,8.6,5.5,8.3,5.9,7.68,&   !K-Kr
+  6.8,6.25,7.7,6.46,6.255,5.71,6.3,6.6,4.6,4.48,4.99,6.5,2.62,4.892,3.9,4.32,3.81,2.96,&   !Ru->Xe
+  3.9,3.38,9.66,2.94,2.66,16.6,21.3,39,9.2,180,6.84,90.3,8.42,8.7,6.38,23.4,7.2,&   !Cs->Lu
+  10.2,6.01,4.6,11.5,14.7,14,11.71,7.75,26.8,9.89,11.118,9.156,0,0,12.6,&   !Hf->Rn
+  0,13,0,13.36,10.5,8.908,14.5,0,9.0,0]  !Fr->Cm
+
+  real(kind=8), parameter :: scatt_absob_cross_section(96) = [real(kind=8) ::&
+  0.3326,0.00747,&   !H->He
+  70.5,0.0076,767,0.0035,1.9,0.00019,0.0096,0.039,&   !Li->Ne
+  0.53,0.063,0.231,0.171,0.172,0.53,33.5,0.675,&   !Na->Ar
+  2.1,0.43,27.5,6.09,5.08,3.05,13.3,2.56,37.18,4.49,3.78,1.11,2.75,2.2,4.5,11.7,6.9,25,&   !K-Kr
+  0.38,1.28,1.28,0.185,1.15,2.48,20,2.56,144.8,6.9,63.3,2520,193.8,0.626,4.91,4.7,6.15,23.9,& !Ru->Xe
+  29.0,1.1,8.97,0.63,11.5,50.5,168.4,5922,4530,49700,23.4,994,64.7,159,100,34.8,74,&   !Cs->Lu
+  104.1,20.6,18.3,89.7,16,425,10.3,98.65,372.30,3.43,0.171,0.0338,0,0,0,&   !Hf->Rn
+  0,12.8,0,7.37,200.6,7.57,175.9,0,75.3,0]  !Fr->Cm
 
 end module constants
