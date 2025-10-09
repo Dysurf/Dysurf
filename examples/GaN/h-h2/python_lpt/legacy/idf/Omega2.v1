@@ -1,9 +1,0 @@
-1 char[64] --> "Omega2"
-1 int32 --> version 1 
-1 char[1024] --> comment
-1 int32 --> Dimension D
-1 int32 --> Number of basis vectors, N_b
-1 int32 --> Number of Qs, N_q
-double[N_q*N_b*D] --> The angular frequencies go here.
-
-The units of angular frequency squared should be in Hz^2.

@@ -1,0 +1,52 @@
+! Example of SQE input file for GaN
+
+&basic
+ntypes = 2 
+natoms = 4
+nsize = 4 4 3
+/
+
+&inputsqe
+elements = "Ga" "N"
+nat = 2 2
+clatvec(:,1) = 3.1900000572   0.0000000000   0.0000000000
+clatvec(:,2) = 0.0000000000   5.5252421752   0.0000000000
+clatvec(:,3) = 0.0000000000   0.0000000000   5.1900000572 
+temp = 300.d0
+lneutron = .TRUE.
+lxray = .FALSE.
+qmesh = 20 20 20
+write_rmsd = .TRUE.
+!read_rmsd = .TRUE.
+path(:,1) = 1 3 0
+path(:,2) = -1 1 0
+path(:,3) = 0 0 1
+ne = 100
+deltaE = 0.5
+nqh = 50
+nqk = 50
+nql = 20
+deltaH = 0.02
+deltaK = 0.04
+deltaL = 0.025
+q0 = -1.5 -0.5 2
+nonanalytic = .FALSE.
+lresfunc = .TRUE.
+functype = "CNCS12"
+xm = 2
+l4D=.TRUE.
+lphase=.TRUE.
+/
+
+LATTICE_PARAMETERS
+   1.d0
+   3.1900000572   0.0000000000   0.0000000000
+  -1.5950000286   2.7626210876   0.0000000000
+   0.0000000000   0.0000000000   5.1900000572
+
+ATOMIC_POSITIONS
+Direct
+  0.333333357   0.666666714   0.000000000
+  0.666666620   0.333333314   0.500000000
+  0.333333357   0.666666714   0.376500004
+  0.666666620   0.333333314   0.876500004

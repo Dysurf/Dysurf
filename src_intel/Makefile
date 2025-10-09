@@ -10,7 +10,7 @@ FC = ifx
 FFLAGS = -traceback -debug -O2 -static-intel
 
 FCL = ${FC}
-LDFLAGS = -L/usr/lib64 -mkl
+LDFLAGS = -L/usr/lib64 -qmkl
 #LDFLAGS= -llapack -lblas
 
 

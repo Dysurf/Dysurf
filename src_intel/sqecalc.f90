@@ -99,7 +99,7 @@ contains
   subroutine sqeForGivenQ(qpt, omegas, rmsd, eigenvecs, sqetemp, T)
   
     use func, only: fBEmeV, faff_wk
-    use constants, only: ci, eps3
+    use constants, only: ci, eps3, tpi
     use variables, only: natoms, nbands, lneutron, lxray, &
                          masses2, coh_b2, xray_b2, aff_wk, lphase, &
                          aff_a, aff_b, aff_c, ntypes, nat, positions

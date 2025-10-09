@@ -10,7 +10,7 @@ FC = gfortran
 FCL = ${FC}
 
 # 编译选项
-FFLAGS = -g -O2 -ffree-line-length-none
+FFLAGS = -g -O2 -ffree-line-length-none -fPIE
 
 # 链接选项
 LDFLAGS = -L/usr/lib/x86_64-linux-gnu/ -llapack -lopenblas -lgfortran -lm -lpthread
