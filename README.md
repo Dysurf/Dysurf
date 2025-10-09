@@ -17,13 +17,13 @@ In this distribution, it contains four subdirectories:
 
 Choose any version that matches your local system environment.
 
-`/docs`: a user manual for description of running a calculation
+`/docs`: a user manual for description of running a calculation. In `/docs/Dysurf_online_version_manual` are manual for using Dysurf online version.
 
 `/examples`: examples of running Dysurf program with input files and results
 
 `/tools`: some python scripts to do preprocessing and plot results
 
-Alternatively, try our web interface (http://36.138.185.163:5000/) to bypass compilation problems.
+Alternatively, try our web interface (http://36.138.185.163:5000/) to bypass compilation problems. The tutorial for using the Dysurf online version can be found in `./docs/Dysurf_online_version_manual`, with corresponding examples located in `examples/CsI/Dysurf_online_version`.
 
 Note:
 

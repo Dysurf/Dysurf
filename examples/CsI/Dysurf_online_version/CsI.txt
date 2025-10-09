@@ -1,0 +1,43 @@
+! SQE input file for CsI
+
+&basic
+ntypes = 2 
+natoms = 2
+nsize = 2 2 2
+/
+
+&inputsqe
+elements = "Cs" "I"
+nat = 1 1 
+temp = 0.d0
+lneutron = .TRUE.
+lxray = .FALSE.
+qmesh = 20 20 20
+write_rmsd = .TRUE.
+!read_rmsd = .TRUE.
+path(:,1) = 1 0 0
+ne = 240
+deltaE = 0.05
+nqh = 400
+nqk = 5
+nql = 5
+deltaH = 0.01
+deltaK = 0.005
+deltaL = 0.005
+q0 = 0 0 0
+nonanalytic = .FALSE.
+lresfunc = .TRUE.
+functype = "CNCS20"
+xm = 1
+/
+
+LATTICE_PARAMETERS
+   1.d0
+     4.5199999809    0.0000000000    0.0000000000
+     0.0000000000    4.5199999809    0.0000000000
+     0.0000000000    0.0000000000    4.5199999809
+
+ATOMIC_POSITIONS
+Direct
+       0.000000000   0.000000000   0.000000000
+       0.500000000   0.500000000   0.500000000

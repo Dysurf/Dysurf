@@ -182,6 +182,6 @@ python plot_lines.py
 ```
 we will get result as shown below:
 
-<img src="./h04/TA2_in_GaN_along_H04.png" alt="SQE at 300 K along [H 0 0]" width="80%" style="display: block; margin: 0 auto;">
+<img src="./h04/TA2_in_GaN_along_H04.png" alt="SQE at 300 K along [H 0 0]" width="60%" style="display: block; margin: 0 auto;">
 
 This setup enables the calculation of the dynamical structure factor and get line profile for GaN, capturing phonon modes along the specified [H 0 0] direction with neutron scattering and appropriate instrument resolution.
