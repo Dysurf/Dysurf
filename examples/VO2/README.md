@@ -6,13 +6,11 @@ During the metal-insulator transition (MIT) near room temperature from the R pha
 
 ![Different Domains in VO2](./diff_domains.png)
 
-The key issue is that $_2$ undergoes a phase transition at low temperatures from the tetragonal rutile phase to the monoclinic phase, resulting in four possible domains. Due to structural changes, the reciprocal space differs for each domain, leading to distinct TDS patterns during scattering. Domains 1 and 3 are equivalent, as are domains 2 and 4. However, experimentally distinguishing these domains is nearly impossible, as the scattering from the sample yields a random or statistical result, representing a combined effect. Therefore, computational simulations are essential to differentiate these domains.
+The key issue is that VO$_2$ undergoes a phase transition at low temperatures from the tetragonal rutile phase to the monoclinic phase, resulting in four possible domains. Due to structural changes, the reciprocal space differs for each domain, leading to distinct TDS patterns during scattering. Domains 1 and 3 are equivalent, as are domains 2 and 4. However, experimentally distinguishing these domains is nearly impossible, as the scattering from the sample yields a random or statistical result, representing a combined effect. Therefore, computational simulations are essential to differentiate these domains.
 
 To determine which domains in the monoclinic phase were probed during Inelastic X-ray Scattering (IXS) measurements, predictive and accurate simulations of IXS spectroscopies are crucial for analyzing experimental results. This example demonstrates simulated X-ray TDS profiles of {1$\bar{1}$1} slices.
-
-![TAR](./TAR.png)
-
-We can identify vectors perpendicular to {1$\bar{1}$}:
+<!-- 
+![TAR](./TAR.png) -->
 
 Here, we identify three vectors perpendicular to {1$\bar{1}$1} for twin 1 or twin 3: (0 1 1), (4 1 -3) and (0 -1 1). q0 is set as (3.2 -5.9 2.9).
 
