@@ -39,7 +39,8 @@ These are derived from the primitive cell lattice vectors in the POSCAR:
 0.0000000000   0.0000000000   5.1900000572
 ```
 This convertion refers to the below picture, which transfers from blue lattice vectors to red vectors.
-![clatvec](./4D/clatvec.png)
+
+<img src="./4D/clatvec.png" alt="clatvec" width="55%" style="display: block; margin: 0 auto;">
 
 - **temp = 300.d0**: Sets the temperature to 300 K, reflecting typical experimental conditions.
 - **lneutron = .TRUE.**: Enables neutron scattering calculations.
@@ -185,7 +186,8 @@ Direct
 
 To visualize the 4D SQE results, use a Python script (`./4D/plot_4D.py`) tailored for 4D data. This typically involves generating 2D slices or 3D projections of the (H, K, L, E) data to highlight phonon nesting effects. Here, we integrated the data along L direction and then we convert each q-point as a voxel in `./4D\/plot_4D.py`. 
 After execute the`./4D/plot_4D.py`, we then get the results as shown below:
-![4D SQE at 300 K for GaN](./4D/4dgan.jpg)
+
+<img src="./4D/4dgan.jpg" alt="4D SQE at 300 K for GaN" width="80%" style="display: block; margin: 0 auto;">
 
 ### Notes
 
@@ -220,7 +222,8 @@ Z, X = np.meshgrid(z, x, indexing='ij')  # Shape: (101, 50)
 Y = np.ones_like(Z) * -2  # Shape: (101, 50), y fixed at -2
 ```
 After execute `./4D/plot_4D_slice1.py`, we get result as below:
-![SQE along H H 0 slice](./4D/slice1.jpg)
+
+<img src="./4D/slice1.jpg" alt="SQE along H H 0 slice" width="80%" style="display: block; margin: 0 auto;">
 
 If we want change another slicing path result, we just need change the slicing path as below(refers to `./4D/plot_4D_slice2.py`):
 ```
@@ -240,4 +243,5 @@ Z, X = np.meshgrid(z, x, indexing='ij')  # Shape: (101, 50)
 Y = np.ones_like(Z) * y  # Shape: (101, 50), y fixed for each point
 ```
 After execute `./4D/plot_4D_slice2.py`, we get result as below:
-![The SQE of a slice at a 45° angle to the [H H 0] direction](./4D/slice2.jpg)
+
+<img src="./4D/slice2.jpg" alt="The SQE of a slice at a 45° angle to the [H H 0] direction" width="80%" style="display: block; margin: 0 auto;">

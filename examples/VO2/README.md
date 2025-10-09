@@ -4,7 +4,7 @@ This tutorial introduces the use of Thermal Diffuse Scattering (TDS) as a powerf
 
 During the metal-insulator transition (MIT) near room temperature from the R phase to the M1 phase, four possible twinned domains can form, as shown below:
 
-![Different Domains in VO2](./diff_domains.png)
+<img src="./diff_domains.png" alt="Different Domains in VO2" width="85%" style="display: block; margin: 0 auto;">
 
 The key issue is that VO$_2$ undergoes a phase transition at low temperatures from the tetragonal rutile phase to the monoclinic phase, resulting in four possible domains. Due to structural changes, the reciprocal space differs for each domain, leading to distinct TDS patterns during scattering. Domains 1 and 3 are equivalent, as are domains 2 and 4. However, experimentally distinguishing these domains is nearly impossible, as the scattering from the sample yields a random or statistical result, representing a combined effect. Therefore, computational simulations are essential to differentiate these domains.
 
@@ -211,10 +211,11 @@ Direct
    ```
    This generates the TDS data for the {1\bar{1}1} slice.
 4. run python script for visulization `./tds/TDStwin1plot.py` and the result is shown as below:
-![twin1ortwin3](./tds/VO2-twin1.jpg)
+<img src="./tds/VO2-twin1.jpg" alt="twin1ortwin3" width="40%" style="display: block; margin: 0 auto;">
 
 After we change to path and q0 selection with twin2 or twin4, and combine them together, we will get result as below:
-![twins_theory](./1-10theroy.png)
+
+<img src="./1-10theroy.png" alt="twins_theory" width="95%" style="display: block; margin: 0 auto;">
 
 The simulated X-ray TDS profiles of {1\bar{1}1} slices in reciprocal space for the combined structures, twin 1/twin3, twin2/twin4, respectively. 
 

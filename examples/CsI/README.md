@@ -142,13 +142,17 @@ Direct
 This setup enables the calculation and visualization of the dynamical structure factor for neutron detection in CsI, focusing on the [H 0 0] direction with appropriate instrument resolution to explore the longitudinal acoustic phonon modes.
 
 The result is shown below: 
-![SQE along [H 0 0]](./h00/SQE_0K.png)
+
+<img src="./h00/SQE_0K.png" alt="SQE along [H 0 0]" width="60%" style="display: block; margin: 0 auto;">
 
 ## Get SQE of other direction:
 The results for the SQE calculation are shown in the figure below:
 To obtain SQE results along different paths, we primarily adjust path(:,1) and q0. For example:
 
 Setting path(:,1) = 1 0 0 and q0 = 0 1 0 allows us to compute the transverse acoustic phonon along the [H 0 0] direction. The input file is located at ./h10/Cs.txt. The result is shown in the figure below:
-![SQE along [H 1 0]](./h10/SQE_0K.png)
+
+<img src="./h10/SQE_0K.png" alt="SQE along [H 1 0]" width="60%" style="display: block; margin: 0 auto;">
+
 Setting path(:,1) = 1 0 0 and q0 = 0 2 0 allows us to compute the transverse acoustic phonon along the [H 0 0] direction. The input file is located at ./h20/Cs.txt. The result is shown in the figure below:
-![SQE along [H 2 0]](./h20/SQE_0K.png)
+
+<img src="./h20/SQE_0K.png" alt="SQE along [H 2 0]" width="60%" style="display: block; margin: 0 auto;">

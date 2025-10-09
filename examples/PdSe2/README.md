@@ -180,8 +180,10 @@ Direct
 
 ## Visualization
 
-Use a Python script (e.g., `2+H00/2+H00.py`) to visualize the SQE results as below:
-![SQE at 300 K for PdSe2 along [H 0 0]](./2+H00/SQE_300K.png)
+Use a Python script (e.g., `./2+H00/2+H00.py`) to visualize the SQE results as below:
+
+<img src="./2+H00/SQE_300K.png" alt="SQE at 300 K for PdSe2 along [H 0 0]" width="50%" style="display: block; margin: 0 auto;">
+
 Thus, we can find this brillion zone is suitable for measuring the longtidinal acoutic phonon modes and some optical phonon modes, which shows aviod crossing feature.
 
 ## Measuring Transverse and Longitudinal Modes Simultaneously
@@ -191,8 +193,8 @@ path(:,1)=1 0 0
 q0 =  2.d0 2.d0 0.d0 
 ```
 This configuration allows the SQE calculation to capture both transverse acoustic phonon modes and longitudinal phonon modes simultaneously. The resulting SQE plot is shown below:
-![SQE at 300 K for PdSe2 along [H 0 0]](./2+H20/SQE_300K.jpg)
 
+<img src="./2+H20/SQE_300K.jpg" alt="SQE at 300 K for PdSe2 along [H+2 2 0]" width="50%" style="display: block; margin: 0 auto;">
 ## Notes
 
 - **Complex System Handling**: With 12 atoms, PdSe2 has 36 phonon branches. Selecting `q0` at (2, 0, 0) and a fine `deltaH` allows probing acoustic and optical modes across Brillouin zones, essential for identifying features like flat bands or crossings in layered materials.

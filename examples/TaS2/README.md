@@ -39,7 +39,8 @@ These are derived from the primitive cell lattice vectors in the POSCAR:
 0.000000000   0.000000000   6.000644917
 ```
 This transformation is based on below picture, where red lattice vectors are 'clatvec' while blue lattice vectors are 'primitive cell lattice vectors in the POSCAR'.
-![Lattice vectors transformation](./clatvec.png)
+
+<img src="./clatvec.png" alt="Lattice vectors transformation" width="60%" style="display: block; margin: 0 auto;">
 
 - **temp = 300.d0**: Sets the temperature to 300 K, relevant for studying phonon behavior near phase transitions.
 - **lneutron = .FALSE.**: Disables neutron scattering.
@@ -170,14 +171,15 @@ Direct
    ```
    This generates the SQE data for the (1+H, 1+H, 0) region.
 3. Run the Python script(eg. `./1+H1+H0/1+h1+h0plot.py`) for visulization as shown below:
-![SQE along 1+H 1+H 0](./1+H1+H0/SQE_300K.jpg)
+
+<img src="./1+H1+H0/SQE_300K.jpg" alt="SQE along 1+H 1+H 0" width="55%" style="display: block; margin: 0 auto;">
 
 ## Scattering Region Selection and Results
 After change other q0 and paths, we can get results at different Briilion zones. And then, we can compare these results to choose suitable case for measurement.
 
 To comprehensively study phonon evolution, we performed SQE calculations for three scattering regions—(2,-2,0), (1,1,0), and (0,0,4)—along high-symmetry directions (Γ–M, Γ–K, Γ–A). By varying `q0` and `path(:,1)`, we obtained the following results:
-![SQE at different BZ](all.jpg)
 
+<img src="./all.jpg" alt="SQE at different BZ" width="90%" style="display: block; margin: 0 auto;">
 ## Measurement Strategy
 
 ### Region (2,-2,0)

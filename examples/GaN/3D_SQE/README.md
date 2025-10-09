@@ -171,7 +171,7 @@ Direct
 2. Run the command `/your_path_to_dysurf/dysurf GaN.txt` to compute the SQE data.
 3. Execute the Python script `plotSQE.py` to generate the result:
 
-   ![SQE at 300 K along H -H 2](./h-h2/SQE_300K.jpg)
+<img src="./h-h2/SQE_300K.jpg" alt="SQE at 300 K along H -H 2" width="50%" style="display: block; margin: 0 auto;">
 
 ## Parameter Settings for Γ–K Direction
 
@@ -203,4 +203,4 @@ p2c
 
 After updating the input file with `path(:,1) = 1 3 0` and `q0 = -0.5 -1.5 3`, follow the same execution steps as above. The result is:
 
-![SQE at 300 K along H H 3](./hh3/SQE_300K.jpg)
+<img src="./hh3/SQE_300K.jpg" alt="SQE at 300 K along H H 3" width="50%" style="display: block; margin: 0 auto;">
