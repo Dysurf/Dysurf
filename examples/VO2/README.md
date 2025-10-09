@@ -215,7 +215,7 @@ Direct
 
 After we change to path and q0 selection with twin2 or twin4, and combine them together, we will get result as below:
 
-<img src="./1-10theroy.png" alt="twins_theory" width="95%" style="display: block; margin: 0 auto;">
+<img src="./1-11theroy.png" alt="twins_theory" width="95%" style="display: block; margin: 0 auto;">
 
 The simulated X-ray TDS profiles of {1\bar{1}1} slices in reciprocal space for the combined structures, twin 1/twin3, twin2/twin4, respectively. 
 
