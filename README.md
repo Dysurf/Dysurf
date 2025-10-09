@@ -1,4 +1,4 @@
-### **Dysurf**, a program for simulating four-dimensional dynamical structure factors
+# **Dysurf**, a program for simulating four-dimensional dynamical structure factors
 
 Version: 1.1
 
@@ -25,7 +25,7 @@ Choose any version that matches your local system environment.
 
 Alternatively, try our web interface (http://36.138.185.163:5000/) to bypass compilation problems. The tutorial for using the Dysurf online version can be found in `./docs/Dysurf_online_version_manual`, with corresponding examples located in `examples/CsI/Dysurf_online_version`.
 
-Note:
+**Note**
 
 Large-scale computations (e.g., high-density q-point sampling or extensive q-space exploration) should not be executed on the web interface.
 
