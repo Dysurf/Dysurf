@@ -75,6 +75,7 @@ p2c
 0 -1 1
 3.2 -5.9 2.9
 ```
+and then execute "python pri2con.py".
 
 Energy settings:
 

@@ -11,9 +11,9 @@ Copyright (C) 2019-2023 Jiawang Hong <hongjw@bit.edu.cn>
 The Dysurf program is mainly written in Fortran 90 and use some Fortran 2003 extensions.
 In this distribution, it contains four subdirectories:
 
-`/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
+- `/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
 
-`/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. 
+- `/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. 
 
 Choose any version that matches your local system environment.
 
