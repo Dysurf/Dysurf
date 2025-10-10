@@ -6,7 +6,7 @@ Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 
 Copyright (C) 2019-2023 Changpeng Lin <changpeng.lin@epfl.ch>
 
-Copyright (C) 2019-2023 Jiawang Hong <hongjw@bit.edu.cn>
+Copyright (C) 2019-2025 Jiawang Hong <hongjw@bit.edu.cn>
 
 The Dysurf program is mainly written in Fortran 90 and use some Fortran 2003 extensions.
 In this distribution, it contains four subdirectories:
