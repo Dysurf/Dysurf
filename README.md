@@ -11,9 +11,9 @@ Copyright (C) 2019-2025 Jiawang Hong <hongjw@bit.edu.cn>
 The Dysurf program is mainly written in Fortran 90 and use some Fortran 2003 extensions.
 In this distribution, it contains four subdirectories:
 
-- `/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
+- `/src/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
 
-- `/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
+- `/src/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
 
 ```
 /usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:51: undefined reference to `dgetri_'
