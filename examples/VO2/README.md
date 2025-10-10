@@ -220,11 +220,11 @@ The simulated X-ray TDS profiles of {1-11} slices in reciprocal space for the co
 ## Explanation of Path and q0 Selection
 
 These vectors are chosen because:
-- They are mutually orthogonal, facilitating a rectangular grid in the simulation (70x70 in H-K, thin 6 points in L for slice approximation).
+- path(:,1) and path(:,2) are mutually orthogonal, facilitating a rectangular grid in the simulation (70x70 in H-K, thin 6 points in L for slice approximation).
 - They lie in (or define) the plane perpendicular to {1-11}, allowing efficient mapping of TDS intensities across the slice without unnecessary computation outside the plane.
 - The slight deviations (e.g., small components like 6.81671939e-04) account for structural specifics in VO2's reciprocal space, ensuring alignment with the monoclinic lattice.
 
-The `q0 ≈ (3.2, -5.9, 9.0)` is selected as the starting point to center the grid in a relevant Brillouin zone, capturing domain-specific TDS patterns for comparison with IXS data. This choice enables differentiation of twinned domains by simulating distinct reciprocal space features.
+The `q0 = (3.2, -5.9, 9.0)` is selected as the starting point to center the grid in a relevant Brillouin zone, capturing domain-specific TDS patterns for comparison with IXS data. This choice enables differentiation of twinned domains by simulating distinct reciprocal space features.
 
 If you are interested in phase transition of VO<sub>2</sub> in more detail, you can refer to our previous work: **Nature 515, 535–539 (2014)**.
 
@@ -233,6 +233,6 @@ If you are interested in phase transition of VO<sub>2</sub> in more detail, you 
 - **TDS for Domain Differentiation**: Enabling `ltds = .TRUE.` computes diffuse scattering, crucial for distinguishing equivalent domains (1/3 vs. 2/4) where experimental IXS cannot.
 
 - **Note which direction is to be integrated**: in this example, path(:,3)
-are used for the integrated. When you calculated TDS, you should understand which direction you will integrate.
+are used for the integrated. When you calculated TDS, you should understand which direction you will integrate. Usually, path(:,1) and path(:,2) define the propagation plane for phonon wavevectors (q-vectors).
 
-This setup provides a framework for TDS simulations in VO2, aiding in domain identification during phase transitions.
+This setup provides a framework for TDS simulations in VO<sub>2</sub>, aiding in domain identification during phase transitions.
