@@ -10,7 +10,7 @@ The key issue is that VO<sub>2</sub> undergoes a phase transition at low tempera
 
 To determine which domains in the monoclinic phase were probed during Inelastic X-ray Scattering (IXS) measurements, predictive and accurate simulations of IXS spectroscopies are crucial for analyzing experimental results. This example demonstrates simulated X-ray TDS profiles of {1$\bar{1}$1} slices.
 
-Here, we identify three vectors perpendicular to {1<span style="text-decoration: overline">1</span>1} for twin 1 or twin 3: (0 1 1), (4 1 -3) and (0 -1 1). q0 is set as (3.2 -5.9 2.9).
+Here, we identify three vectors for twin 1 or twin 3: (0 1 1), (4 1 -3) and (0 -1 1). q0 is set as (3.2 -5.9 2.9).
 
 For twin 2 or twin 4, we identify three vectors according to  twin 2 or twin 4: (0 1 -1), (4 -1 -3) and (0 1 1). q0 is set as (3.2 4.5 4.3).
 
@@ -52,7 +52,7 @@ clatvec(:,3) = 0.0000000000000000    0.0000000000000000   9.173
 
 Starting point for the Q-vector:
 
-- **q0 = 3.20307944 -5.9 9.03364227**: Chosen to center the grid in a specific Brillouin zone corresponding to the {1\bar{1}1} slice, ensuring the simulation captures the relevant reciprocal space region for TDS profiles.
+- **q0 = 3.20307944 -5.9 9.03364227**: Chosen to center the grid in a specific Brillouin zone corresponding to the {1-11} slice, ensuring the simulation captures the relevant reciprocal space region for TDS profiles.
 
 **Here, the path can be converted by `uc_vector_twin1.in`**,which is:
 ```
@@ -80,7 +80,7 @@ Energy settings:
 
 Q-point sampling for a 3D grid (suitable for TDS slices):
 
-- **nqh = 70**, **nqk = 70**, **nql = 6**: Number of Q-points along H, K, and L directions, creating a 70x70x6 grid for the {1\bar{1}1} slice (thin in L for 2D-like slice).
+- **nqh = 70**, **nqk = 70**, **nql = 6**: Number of Q-points along H, K, and L directions, creating a 70x70x6 grid for the {1-11} slice (thin in L for 2D-like slice).
 - **deltaH = 0.05**, **deltaK = 0.05**, **deltaL = 0.005**: Step sizes, resulting in ranges of 3.5 in H and K, and 0.03 in L.
 
 No LO-TO splitting:
@@ -207,7 +207,7 @@ Direct
    ```bash
    /your_path_to_dysurf/dysurf VO2.txt
    ```
-   This generates the TDS data for the {1\bar{1}1} slice.
+   This generates the TDS data for the {1-11} slice.
 4. run python script for visulization `./tds/TDStwin1plot.py` and the result is shown as below:
 <img src="./tds/VO2-twin1.jpg" alt="twin1ortwin3" width="40%" style="display: block; margin: 0 auto;">
 
@@ -215,13 +215,13 @@ After we change to path and q0 selection with twin2 or twin4, and combine them t
 
 <img src="./1-11theroy.png" alt="twins_theory" width="95%" style="display: block; margin: 0 auto;">
 
-The simulated X-ray TDS profiles of {1\bar{1}1} slices in reciprocal space for the combined structures, twin 1/twin3, twin2/twin4, respectively. 
+The simulated X-ray TDS profiles of {1-11} slices in reciprocal space for the combined structures, twin 1/twin3, twin2/twin4, respectively. 
 
 ## Explanation of Path and q0 Selection
 
 These vectors are chosen because:
 - They are mutually orthogonal, facilitating a rectangular grid in the simulation (70x70 in H-K, thin 6 points in L for slice approximation).
-- They lie in (or define) the plane perpendicular to {1\bar{1}1}, allowing efficient mapping of TDS intensities across the slice without unnecessary computation outside the plane.
+- They lie in (or define) the plane perpendicular to {1-11}, allowing efficient mapping of TDS intensities across the slice without unnecessary computation outside the plane.
 - The slight deviations (e.g., small components like 6.81671939e-04) account for structural specifics in VO2's reciprocal space, ensuring alignment with the monoclinic lattice.
 
 The `q0 ≈ (3.2, -5.9, 9.0)` is selected as the starting point to center the grid in a relevant Brillouin zone, capturing domain-specific TDS patterns for comparison with IXS data. This choice enables differentiation of twinned domains by simulating distinct reciprocal space features.
