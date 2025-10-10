@@ -1,22 +1,20 @@
 # Tutorial: TDS Calculation for VO2 Using SQE Simulation
 
-This tutorial introduces the use of Thermal Diffuse Scattering (TDS) as a powerful method for investigating structural information in materials by analyzing the evolution of Bragg peak intensities and redistributed scattering intensities along Q-point paths. We present a previous study on VO$_2$ to demonstrate TDS utilization. VO$_2$ exhibits an insulating monoclinic (M1) phase below Tc = 340 K and transitions to a metallic tetragonal (R) phase above Tc = 340 K.
+This tutorial introduces the use of Thermal Diffuse Scattering (TDS) as a powerful method for investigating structural information in materials by analyzing the evolution of Bragg peak intensities and redistributed scattering intensities along Q-point paths. We present a previous study on VO<sub>2</sub> to demonstrate TDS utilization. VO<sub>2</sub> exhibits an insulating monoclinic (M1) phase below Tc = 340 K and transitions to a metallic tetragonal (R) phase above Tc = 340 K.
 
 During the metal-insulator transition (MIT) near room temperature from the R phase to the M1 phase, four possible twinned domains can form, as shown below:
 
 <img src="./diff_domains.png" alt="Different Domains in VO2" width="85%" style="display: block; margin: 0 auto;">
 
-The key issue is that VO$_2$ undergoes a phase transition at low temperatures from the tetragonal rutile phase to the monoclinic phase, resulting in four possible domains. Due to structural changes, the reciprocal space differs for each domain, leading to distinct TDS patterns during scattering. Domains 1 and 3 are equivalent, as are domains 2 and 4. However, experimentally distinguishing these domains is nearly impossible, as the scattering from the sample yields a random or statistical result, representing a combined effect. Therefore, computational simulations are essential to differentiate these domains.
+The key issue is that VO<sub>2</sub> undergoes a phase transition at low temperatures from the tetragonal rutile phase to the monoclinic phase, resulting in four possible domains. Due to structural changes, the reciprocal space differs for each domain, leading to distinct TDS patterns during scattering. Domains 1 and 3 are equivalent, as are domains 2 and 4. However, experimentally distinguishing these domains is nearly impossible, as the scattering from the sample yields a random or statistical result, representing a combined effect. Therefore, computational simulations are essential to differentiate these domains.
 
 To determine which domains in the monoclinic phase were probed during Inelastic X-ray Scattering (IXS) measurements, predictive and accurate simulations of IXS spectroscopies are crucial for analyzing experimental results. This example demonstrates simulated X-ray TDS profiles of {1$\bar{1}$1} slices.
-<!-- 
-![TAR](./TAR.png) -->
 
-Here, we identify three vectors perpendicular to {1$\bar{1}$1} for twin 1 or twin 3: (0 1 1), (4 1 -3) and (0 -1 1). q0 is set as (3.2 -5.9 2.9).
+Here, we identify three vectors perpendicular to {1<span style="text-decoration: overline">1</span>1} for twin 1 or twin 3: (0 1 1), (4 1 -3) and (0 -1 1). q0 is set as (3.2 -5.9 2.9).
 
-For twin 2 or twin 4, we identify three vectors according to  twin 1 or twin 3: (0 1 -1), (4 -1 -3) and (0 1 1). q0 is set as (3.2 4.5 4.3).
+For twin 2 or twin 4, we identify three vectors according to  twin 2 or twin 4: (0 1 -1), (4 -1 -3) and (0 1 1). q0 is set as (3.2 4.5 4.3).
 
-The input file is configured for SQE simulation in an orthogonal coordinate system for VO$_2$, focusing on TDS calculations.
+The input file is configured for SQE simulation in an orthogonal coordinate system for VO<sub>2</sub>, focusing on TDS calculations.
 
 ## Parameter Settings
 
@@ -228,7 +226,7 @@ These vectors are chosen because:
 
 The `q0 ≈ (3.2, -5.9, 9.0)` is selected as the starting point to center the grid in a relevant Brillouin zone, capturing domain-specific TDS patterns for comparison with IXS data. This choice enables differentiation of twinned domains by simulating distinct reciprocal space features.
 
-If you are interested in phase transition of VO$_2$ in more detail, you can refer to our previous work: **Nature 515, 535–539 (2014)**.
+If you are interested in phase transition of VO<sub>2</sub> in more detail, you can refer to our previous work: **Nature 515, 535–539 (2014)**.
 
 ## Notes
 

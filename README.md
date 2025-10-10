@@ -13,7 +13,16 @@ In this distribution, it contains four subdirectories:
 
 - `/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
 
-- `/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. 
+- `/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
+
+```
+/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:51: undefined reference to `dgetri_'
+/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:61: undefined reference to `dnrm2_'
+/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:70: undefined reference to `dnrm2_'
+/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:104: undefined reference to `dnrm2_'
+collect2: error: ld returned 1 exit status
+```
+Run `gfortran -g -O2 -ffree-line-length-none -fPIE -c dysurf.f90 -o dysurf` seems to resolve this problem. Or you may need to point to your own openblas path.
 
 Choose any version that matches your local system environment.
 
