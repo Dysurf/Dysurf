@@ -202,14 +202,14 @@ Direct
 ## Execution
 
 1. Ensure RMSD is computed beforehand if using `read_rmsd = .TRUE.`.
-2. Place the input file (e.g., `VO2.txt`) in the working directory.
+2. Place the input file (e.g., `VO2_twin1.txt`) in the working directory.
 3. Run the command:
    ```bash
-   /your_path_to_dysurf/dysurf VO2.txt
+   /your_path_to_dysurf/dysurf VO2_twin1.txt
    ```
    This generates the TDS data for the {1-11} slice.
 4. run python script for visulization `./tds/TDStwin1plot.py` and the result is shown as below:
-<img src="./tds/VO2-twin1.jpg" alt="twin1ortwin3" width="40%" style="display: block; margin: 0 auto;">
+<img src="./tds/TDStwin1.jpg" alt="twin1ortwin3" width="40%" style="display: block; margin: 0 auto;">
 
 After we change to path and q0 selection with twin2 or twin4, and combine them together, we will get result as below:
 
