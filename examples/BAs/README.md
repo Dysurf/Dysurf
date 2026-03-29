@@ -67,10 +67,10 @@ The two inputs share the same SQE setup:
 
 The only intended physics difference is:
 
-- [BAs.txt](/home/davy/software/Dysurf/examples/BAs/BAs.txt): `nonanalytic = .TRUE.` and includes `BORN`
-- [BAs_no_born.txt](/home/davy/software/Dysurf/examples/BAs/BAs_no_born.txt): `nonanalytic = .FALSE.` and omits `BORN`
+- `BAs.txt`: `nonanalytic = .TRUE.` and includes `BORN`
+- `BAs_no_born.txt`: `nonanalytic = .FALSE.` and omits `BORN`
 
-In [BAs.txt](/home/davy/software/Dysurf/examples/BAs/BAs.txt), the `BORN` section contains:
+In `BAs.txt`, the `BORN` section contains:
 
 - isotropic dielectric tensor with diagonal value `9.823`
 - Born effective charges for B and As
@@ -80,7 +80,7 @@ In [BAs.txt](/home/davy/software/Dysurf/examples/BAs/BAs.txt), the `BORN` sectio
 Run the two SQE calculations:
 
 ```bash
-cd /home/davy/software/Dysurf/examples/BAs
+cd Dysurf/examples/BAs
 mpirun -np 1 ../../src/src_gfortran/dysurf BAs.txt
 cp SQE_300K.dat SQE_300K_born.dat
 cp omega.dat omega_born.dat
@@ -93,7 +93,7 @@ cp omega.dat omega_no_born.dat
 Generate the comparison figure with the existing conda environment:
 
 ```bash
-cd /home/davy/software/Dysurf/examples/BAs
+cd Dysurf/examples/BAs
 source /home/davy/miniconda3/etc/profile.d/conda.sh
 conda activate neutronpy
 python plot_compare_q020_png.py
