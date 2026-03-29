@@ -1,6 +1,6 @@
 # 2+H00_CNCS12_psf2d_hcol_compare
 
-This folder is the full Dysurf comparison example. It compares one legacy empirical resolution model against two formal TAS `psf2d` calculations:
+This folder is the Dysurf comparison example. It compares one legacy empirical resolution model against two formal TAS `psf2d` calculations:
 
 - `CNCS12`
 - `psf2d` with `hcol = [20,20,20,20]`

@@ -8,11 +8,11 @@ In TAS calculations, the instrumental resolution depends sensitively on the spec
 - post_samp
 - post_ana
 
-Changing these values modifies the local resolution in the (𝑑𝐐, 𝑑𝐸) plane. In general, looser collimation leads to a broader resolution function, while tighter collimation gives a narrower one. Since the TAS resolution is typically tilted and anisotropic, the broadening can appear differently in the momentum and energy directions.
+Changing these values modifies the local resolution in the (𝑑**𝐐**, 𝑑𝐸) plane. Since the TAS resolution is typically tilted and anisotropic, the broadening can appear differently in the momentum and energy directions.
 
 The purpose of this test is to check how different hcol settings affect:
 
-the overall 2D resolution shape from the CN calculation, the fitted local 2D PSF parameters, the 1D cuts along 𝑑𝐐 and 𝑑𝐸, the fitting quality of the PSF approximation
+the overall 2D resolution shape from the CN calculation, the fitted local 2D PSF parameters, the 1D cuts along 𝑑**𝐐** and 𝑑𝐸, the fitting quality of the PSF approximation
 
 # 2+H00_psf2d_hcol_only_compare
 
@@ -58,6 +58,7 @@ The three instrument files are now commented so the meaning of each TAS paramete
 - `u`, `v`: sample orientation vectors
 
 `u` and `v` are now real runtime inputs. Each preset file carries its own orientation, and [run_psf2d_hcol_only_compare.py](./run_psf2d_hcol_only_compare.py) passes that orientation into [validate_psf2d_parametrization.f90](Dysurf/src/src_gfortran/validate_psf2d_parametrization.f90).
+
 Their meaning is now exactly the same as the `u/v` parameters in the SQE `psf2d` example: they define the sample orientation used by the local TAS 4D-resolution to PSF parameter pipeline, not the scan path itself.
 
 For the current presets, the orientation is kept the same across all three cases:
