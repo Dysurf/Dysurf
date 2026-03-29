@@ -1,0 +1,111 @@
+! Formal PSF2D main mode.
+! Only hcol is changed relative to the baseline PSF2D setup.
+! hcol = [80,120,80,120], all mosaics fixed at mono=35', ana=35', sample=60'.
+
+&basic
+ntypes = 2
+natoms = 12
+nsize = 2 2 2
+/
+
+&inputsqe
+elements = "Pd"  "Se"
+nat = 4 8
+temp = 300.d0
+lneutron = .TRUE.
+lxray = .FALSE.
+qmesh = 20 20 20
+read_rmsd = .TRUE.
+espresso = .FALSE.
+path(:,1) = 1.d0   0.d0   0.d0
+path(:,2) = 0.d0   1.d0   0.d0
+ne = 320
+deltaE = 0.05
+nqh = 100
+nqk = 5
+nql = 5
+deltaH = 0.005
+deltaK = 0.001
+deltaL = 0.001
+q0 = 2.d0 0.d0 0.d0
+nonanalytic = .FALSE.
+lresfunc = .TRUE.
+xm = 1
+
+! TAS main mode:
+!   'CN' = Cooper-Nathans triple-axis resolution.
+tas_mode = 'CN'
+! Fixed-energy mode:
+!   'Ef' = fixed final energy.
+tas_fix_mode = 'Ef'
+! Observation mode:
+!   'psf2d' = use the fitted local 2D PSF representation.
+tas_obs_mode = 'psf2d'
+! Enable CN branch and mosaic contribution.
+tas_use_cn = .TRUE.
+tas_use_mosaic = .TRUE.
+tas_debug_res = .FALSE.
+
+! Sample orientation vectors in reciprocal-lattice units.
+! These play the same role as u/v in the two local PSF examples.
+u = 1.d0 0.d0 0.d0
+v = 0.d0 1.d0 0.d0
+
+! Monochromator / sample / analyzer scattering sense.
+tas_mono_dir = 1
+tas_sample_dir = -1
+tas_ana_dir = 1
+! Fixed final energy [meV].
+tas_e_fixed = 14.7d0
+
+! Horizontal collimations [arcmin]:
+! pre_mono / pre_samp / post_samp / post_ana
+tas_coll_h_pre_mono = 80.d0
+tas_coll_h_pre_samp = 120.d0
+tas_coll_h_post_samp = 80.d0
+tas_coll_h_post_ana = 120.d0
+
+! Horizontal mosaics [arcmin]:
+! monochromator / analyzer / sample
+tas_mosaic_mono_h = 35.d0
+tas_mosaic_ana_h = 35.d0
+tas_mosaic_samp_h = 60.d0
+
+! Monochromator / analyzer d spacings [Angstrom], here PG(002).
+tas_dm = 3.3541627156970963d0
+tas_da = 3.3541627156970963d0
+
+! Export fitted local 2D PSF side products.
+lresfunc2d_psf = .TRUE.
+psf_mode = 'analytic'
+psf_window_q = 6
+psf_window_e = 12
+psf_sigma_q_default = 1.0d0
+psf_sigma_e_left_default = 1.5d0
+psf_sigma_e_right_default = 1.5d0
+psf_shear_default = 0.0d0
+lsave_intrinsic_slice = .TRUE.
+lsave_psf_slice = .TRUE.
+lsave_psf_params = .TRUE.
+/
+
+LATTICE_PARAMETERS
+   1.d0
+     5.7409999999999997    0.0000000000000000    0.0000000000000000
+     0.0000000000000000    5.8769999999999998    0.0000000000000000
+     0.0000000000000000    0.0000000000000000    7.7050000000000001
+
+ATOMIC_POSITIONS
+Direct
+ -0.0000000000000000 -0.0000000000000000  0.0000000000000000
+  0.5000000000000000 -0.0000000000000000  0.5000000000000000
+ -0.0000000000000000  0.5000000000000000  0.5000000000000000
+  0.5000000000000000  0.5000000000000000  0.0000000000000000
+  0.1069333608201978  0.1154989540421862  0.3971674211945991
+  0.8930666541798000  0.8845010309578163  0.6028325788054008
+  0.3930666541797999  0.8845010309578163  0.8971674211945992
+  0.6069333458202000  0.1154989540421862  0.1028325788054009
+  0.8930666541798000  0.6154989690421837  0.1028325788054009
+  0.1069333608201978  0.3845010309578161  0.8971674211945992
+  0.6069333458202000  0.3845010309578161  0.6028325788054008
+  0.3930666541797999  0.6154989690421837  0.3971674211945991

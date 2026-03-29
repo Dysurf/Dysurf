@@ -135,9 +135,9 @@ contains
        sigmae = sigma12(ecenter)
     elseif (ftype .eq. "CNCS20") then
        sigmae = sigma20(ecenter)
-    elseif (ftype .eq. "HNTAS") then
+    elseif (ftype .eq. "Cuizhuhot") then
        sigmae = sigma_h(ecenter) 
-    elseif (ftype .eq. "CNTAS") then
+    elseif (ftype .eq. "Cuizhucold") then
        sigmae = sigma_c(ecenter)
     elseif (ftype .eq. "poly") then
        sigmae = sigma_poly(ecenter, a, ord)

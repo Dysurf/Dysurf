@@ -1,0 +1,17 @@
+Local PSF example selection
+===========================
+selection_mode = automatic
+selection_rule = max_abs_shear_inside_margin
+iq = 6
+iE = 142
+q0_hkl = [2.025000, 0.000000, 0.000000]
+E0_meV = 7.050000
+preset = base
+u = [1.0, 0.0, 0.0]
+v = [0.0, 1.0, 0.0]
+
+Instrument parameter file:
+  instrument_base.txt
+
+Nominal point definition file:
+  example_nominal_point.txt

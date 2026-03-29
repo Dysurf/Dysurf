@@ -1,0 +1,98 @@
+Local PSF comparison with hcol-only variation
+===========================================
+iq = 6
+iE = 142
+
+Only hcol is changed across the three presets.
+All mosaic values are fixed at mono=35', ana=35', sample=60'.
+
+[hcol_narrow] hcol = [20,20,20,20]
+  E0 = 7.050000000000001
+  sigma_q = 0.007761987654483279
+  sigma_e_left = 0.1355914581880698
+  sigma_e_right = 0.1356833519762192
+  shear = 13.86279369591947
+  relative_l2 = 0.0007758348648388834
+  rmse = 1.023118033857993e-07
+
+Full params dump:
+q0_hkl =   0.2025000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+E0 =   0.7050000000000001E+01
+iq = 6
+iE = 142
+preset = hcol_narrow
+u =   0.1000000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+v =   0.0000000000000000E+00   0.1000000000000000E+01   0.0000000000000000E+00
+hcol_arcmin =   0.2000000000000000E+02   0.2000000000000000E+02   0.2000000000000000E+02   0.2000000000000000E+02
+mosaic_arcmin =   0.3500000000000000E+02   0.3500000000000000E+02   0.6000000000000000E+02
+sigma_q =   0.7761987654483279E-02
+sigma_e_left =   0.1355914581880698E+00
+sigma_e_right =   0.1356833519762192E+00
+shear =   0.1386279369591947E+02
+used_fallback = F
+relative_l2 =   0.7758348648388834E-03
+rmse =   0.1023118033857993E-06
+
+raw 2D PSF: projected/marginalized Gaussian derived directly from local TAS CN RM
+fit 2D PSF: sheared 2D analytic PSF reconstructed from sigma_q, sigma_e_left, sigma_e_right, shear
+
+[hcol_base] hcol = [50,80,50,120]
+  E0 = 7.050000000000001
+  sigma_q = 0.01600103832015277
+  sigma_e_left = 0.1930102932942247
+  sigma_e_right = 0.1931337759864056
+  shear = 8.114079894054886
+  relative_l2 = 0.0007665918123175717
+  rmse = 9.822246861056366e-08
+
+Full params dump:
+q0_hkl =   0.2025000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+E0 =   0.7050000000000001E+01
+iq = 6
+iE = 142
+preset = hcol_base
+u =   0.1000000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+v =   0.0000000000000000E+00   0.1000000000000000E+01   0.0000000000000000E+00
+hcol_arcmin =   0.5000000000000000E+02   0.8000000000000000E+02   0.5000000000000000E+02   0.1200000000000000E+03
+mosaic_arcmin =   0.3500000000000000E+02   0.3500000000000000E+02   0.6000000000000000E+02
+sigma_q =   0.1600103832015277E-01
+sigma_e_left =   0.1930102932942247E+00
+sigma_e_right =   0.1931337759864056E+00
+shear =   0.8114079894054886E+01
+used_fallback = F
+relative_l2 =   0.7665918123175717E-03
+rmse =   0.9822246861056366E-07
+
+raw 2D PSF: projected/marginalized Gaussian derived directly from local TAS CN RM
+fit 2D PSF: sheared 2D analytic PSF reconstructed from sigma_q, sigma_e_left, sigma_e_right, shear
+
+[hcol_wide] hcol = [80,120,80,120]
+  E0 = 7.050000000000001
+  sigma_q = 0.01833781715145264
+  sigma_e_left = 0.2134650171211756
+  sigma_e_right = 0.2136071107864831
+  shear = 8.806040379795169
+  relative_l2 = 0.0007732083212927571
+  rmse = 1.010535177922596e-07
+
+Full params dump:
+q0_hkl =   0.2025000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+E0 =   0.7050000000000001E+01
+iq = 6
+iE = 142
+preset = hcol_wide
+u =   0.1000000000000000E+01   0.0000000000000000E+00   0.0000000000000000E+00
+v =   0.0000000000000000E+00   0.1000000000000000E+01   0.0000000000000000E+00
+hcol_arcmin =   0.8000000000000000E+02   0.1200000000000000E+03   0.8000000000000000E+02   0.1200000000000000E+03
+mosaic_arcmin =   0.3500000000000000E+02   0.3500000000000000E+02   0.6000000000000000E+02
+sigma_q =   0.1833781715145264E-01
+sigma_e_left =   0.2134650171211756E+00
+sigma_e_right =   0.2136071107864831E+00
+shear =   0.8806040379795169E+01
+used_fallback = F
+relative_l2 =   0.7732083212927571E-03
+rmse =   0.1010535177922596E-06
+
+raw 2D PSF: projected/marginalized Gaussian derived directly from local TAS CN RM
+fit 2D PSF: sheared 2D analytic PSF reconstructed from sigma_q, sigma_e_left, sigma_e_right, shear
+

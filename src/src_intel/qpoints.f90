@@ -17,7 +17,6 @@
 ! along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ! Bin box definition and q-points generation
-
 module qpoints
   
   implicit none
@@ -110,4 +109,4 @@ contains
 
   end subroutine load_qpoints
     
-end module qpoints   
+end module qpoints

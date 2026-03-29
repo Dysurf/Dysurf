@@ -19,7 +19,6 @@
 ! Subroutines used to determine phonon band structure
 ! adapted from phonon_routines.f90 of ShengBTE ( 
 ! http://www.shengbte.org/ ), licensed under the GPL.
-
 module phonon_spectra
 
   implicit none

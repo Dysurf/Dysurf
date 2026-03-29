@@ -1,0 +1,16 @@
+hcol-only local PSF comparison selection
+=================================
+selection_mode = automatic
+selection_rule = max_abs_shear_inside_margin
+iq = 6
+iE = 142
+q0_hkl = [2.025000, 0.000000, 0.000000]
+E0_meV = 7.050000
+u = [1.0, 0.0, 0.0]
+v = [0.0, 1.0, 0.0]
+
+Parameter files:
+  instrument_hcol_narrow.txt
+  instrument_hcol_base.txt
+  instrument_hcol_wide.txt
+  example_nominal_point.txt

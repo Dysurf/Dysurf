@@ -1,0 +1,77 @@
+ ----------------------------------
+      Dysurf Program Version 1.2   
+ ----------------------------------
+
+ Dysurf program begins ...
+
+ Read the input successfully.
+
+ Read the second-order force constants from FORCE_CONSTANTS successfully.
+
+ Write full q-points into file ...
+
+ Start to compute phonon spectra ...
+
+ Phonon spectra calculation finished.
+
+ Write q-points into file ...
+
+ Write phonon energy into file ...
+
+ Read RMSD from file ...
+
+ RMSD at each temperature is:
+
+Warning: RMSD file temperature does not match requested temperature.
+Requested T =   300.00 K, file T =     0.00 K
+ T =   0.0 K
+ Pd        0.03639129       0.03565801       0.05603182
+ Pd        0.03639120       0.03565790       0.05603098
+ Pd        0.03639121       0.03565787       0.05603268
+ Pd        0.03639117       0.03565803       0.05603194
+ Se        0.04185409       0.04034502       0.04893013
+ Se        0.04185374       0.04034468       0.04893118
+ Se        0.04185385       0.04034504       0.04893072
+ Se        0.04185351       0.04034471       0.04893175
+ Se        0.04185407       0.04034498       0.04893016
+ Se        0.04185372       0.04034465       0.04893120
+ Se        0.04185379       0.04034477       0.04893069
+ Se        0.04185345       0.04034444       0.04893173
+
+ Start to compute S(Q,E) ...
+
+ Enter inelastic neutron scattering ...
+
+ SQE info:          40 percent of        2500 q-points
+
+ SQE info:          80 percent of        2500 q-points
+
+ 2D PSF resolution: intrinsic_slice built from pre-resolution mode list.
+
+ 2D PSF resolution: local 4D RM/RMM built from TAS CN resolution at nominal points.
+
+ 2D PSF resolution: local PSF parameters estimated from 4D RM/RMM-derived samples.
+
+ 2D PSF resolution: local 2D convolution applied to intrinsic_slice.
+ 2D PSF resolution: rel_l2(psf2d,intrinsic)=  0.91170899117267112     
+
+ S(Q,E) calculation finished.
+
+ Write S(Q,E) into file ...
+
+ 2D PSF resolution: main SQE output written from psf2d-convolved slice.
+
+ ***** Recommended Sample Mass for Experiment (unit: grams) *****
+ Relative molecular mass(MW) is               1057.3599853515625     
+ total atoms_scatt_totoal_cross_section is    84.320001602172852     
+ abscro_molecule is                           121.19999885559082     
+ Recommend mass of every 1 cm^2               2.0830310931099736     
+ Total absobtion of every 1cm^2              0.14373813632905294     
+
+ Instrument example: ARCS with 5x5 cm sample container
+ ----------------------------------------------------
+ Recommended mass for ARCS:             52.075777327749343       g
+ Total absorption for this mass:        3.5934534082263236       barns
+ ****************************************************************
+ The program lasts           0 min           5 sec
+

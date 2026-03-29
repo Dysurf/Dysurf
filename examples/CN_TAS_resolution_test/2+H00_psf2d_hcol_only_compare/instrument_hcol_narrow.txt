@@ -1,0 +1,38 @@
+# Documentation-only parameter file for the hcol-only local PSF comparison
+# Narrow hcol preset. Used by run_psf2d_hcol_only_compare.py.
+
+# TAS resolution mode: Cooper-Nathans
+tas_mode = 'CN'
+# Export local 2D PSF fit
+tas_obs_mode = 'psf2d'
+# Fixed final energy mode
+tas_fix_mode = 'Ef'
+
+# Monochromator / sample / analyzer scattering sense
+tas_mono_dir = 1
+tas_sample_dir = -1
+tas_ana_dir = 1
+
+# Fixed final energy [meV]
+tas_e_fixed = 14.7d0
+
+# Horizontal collimations [arcmin]
+# pre_mono / pre_samp / post_samp / post_ana
+tas_coll_h_pre_mono = 20.d0
+tas_coll_h_pre_samp = 20.d0
+tas_coll_h_post_samp = 20.d0
+tas_coll_h_post_ana = 20.d0
+
+# Horizontal mosaics [arcmin]
+# monochromator / analyzer / sample
+tas_mosaic_mono_h = 35.d0
+tas_mosaic_ana_h = 35.d0
+tas_mosaic_samp_h = 60.d0
+
+# Monochromator / analyzer d spacing [Angstrom]
+tas_dm = 3.3541627156970963d0
+tas_da = 3.3541627156970963d0
+
+# Sample orientation vectors
+u = [1, 0, 0]
+v = [0, 1, 0]

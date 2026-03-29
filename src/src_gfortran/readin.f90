@@ -36,7 +36,7 @@ contains
     integer(kind=4) :: ii, jj, kk, istat
     integer(kind=4), allocatable :: zid(:)
     character(len=10) :: coord_type
-    character(len=20) :: inputfile
+    character(len=256) :: inputfile
     character(len=100) :: buffer
     
     namelist / basic / ntypes, natoms, nsize
@@ -45,7 +45,15 @@ contains
         masses, coh_b, xray_b, temp, temp_min, temp_max, temp_step, qmesh, &
         path, elements, nonanalytic, lneutron, lxray, write_rmsd, order, &
         xm, paras, functype, lresfunc, degauss, read_rmsd, filename_rmsd, l4d, &
-        aff_wk, aff_a, aff_b, aff_c, espresso, clatvec, lphase, ltds, filename_omega, scatt_xs, abs_xs
+        aff_wk, aff_a, aff_b, aff_c, espresso, clatvec, lphase, ltds, filename_omega, scatt_xs, abs_xs, &
+        u, v, &
+        tas_mode, tas_fix_mode, tas_obs_mode, tas_mono_dir, tas_sample_dir, tas_ana_dir, &
+        tas_use_cn, tas_use_mosaic, tas_debug_res, tas_e_fixed, &
+        tas_coll_h_pre_mono, tas_coll_h_pre_samp, tas_coll_h_post_samp, tas_coll_h_post_ana, &
+        tas_mosaic_mono_h, tas_mosaic_ana_h, tas_mosaic_samp_h, tas_dm, tas_da, &
+        lresfunc2d_psf, lsave_intrinsic_slice, lsave_psf_slice, lsave_psf_params, &
+        psf_mode, psf_window_q, psf_window_e, &
+        psf_sigma_q_default, psf_sigma_e_left_default, psf_sigma_e_right_default, psf_shear_default
     
     ! read the basic namelist
     ! ntypes, natoms, nsize, nat, path, elements, q0 must be specified in input file
@@ -79,6 +87,8 @@ contains
     temp_step = 0.d0
     qmesh = (/20, 20, 20/)
     path = 0.d0
+    u = 0.d0
+    v = 0.d0
     clatvec = 0.d0
     nonanalytic = .FALSE.
     espresso = .FALSE.
@@ -113,9 +123,95 @@ contains
     functype = "CNCS12"
     lresfunc = .FALSE.
     lphase = .FALSE.
+    lresfunc2d_psf = .FALSE.
+    lsave_intrinsic_slice = .FALSE.
+    lsave_psf_slice = .FALSE.
+    lsave_psf_params = .FALSE.
+    psf_mode = 'analytic'
+    psf_window_q = 6
+    psf_window_e = 12
+    psf_sigma_q_default = 1.d0
+    psf_sigma_e_left_default = 1.5d0
+    psf_sigma_e_right_default = 1.5d0
+    psf_shear_default = 0.d0
     
     ! read the inputsqe namelist and crystal structure
     read(1, nml=inputsqe)
+    if (trim(tas_mode) /= 'none' .and. trim(tas_mode) /= 'CN') then
+       write(error_unit, *) 'Wrong tas_mode! It should be none or CN.'
+       stop
+    end if
+    if (trim(tas_fix_mode) /= 'Ef' .and. trim(tas_fix_mode) /= 'Ei') then
+       write(error_unit, *) 'Wrong tas_fix_mode! It should be Ef or Ei.'
+       stop
+    end if
+    if (trim(tas_obs_mode) /= 'linearized_4d' .and. trim(tas_obs_mode) /= 'psf2d') then
+       write(error_unit, *) 'Wrong tas_obs_mode! It should be linearized_4d or psf2d.'
+       stop
+    end if
+    if ((tas_mono_dir /= -1 .and. tas_mono_dir /= 1) .or. (tas_sample_dir /= -1 .and. tas_sample_dir /= 1) .or. &
+        (tas_ana_dir /= -1 .and. tas_ana_dir /= 1)) then
+       write(error_unit, *) 'tas_mono_dir, tas_sample_dir and tas_ana_dir should each be +/-1.'
+       stop
+    end if
+    if (tas_e_fixed <= 0.d0) then
+       write(error_unit, *) 'tas_e_fixed should be positive.'
+       stop
+    end if
+    if (any(abs(u) > eps5) .or. any(abs(v) > eps5)) then
+       if (.not. (any(abs(u) > eps5) .and. any(abs(v) > eps5))) then
+          write(error_unit, *) 'u and v should either both be set or both be omitted.'
+          stop
+       end if
+    end if
+    if (tas_dm <= 0.d0 .or. tas_da <= 0.d0) then
+       write(error_unit, *) 'tas_dm and tas_da should be positive.'
+       stop
+    end if
+    if (trim(tas_obs_mode) == 'psf2d') then
+       if (.not. lresfunc) then
+          write(error_unit, *) 'tas_obs_mode=''psf2d'' requires lresfunc=.TRUE.'
+          stop
+       end if
+       if (trim(tas_mode) /= 'CN' .or. .not. tas_use_cn) then
+          write(error_unit, *) 'tas_obs_mode=''psf2d'' requires tas_mode=''CN'' and tas_use_cn=.TRUE..'
+          stop
+       end if
+       if (l4d) then
+          write(error_unit, *) 'tas_obs_mode=''psf2d'' currently supports only 2D SQE output (l4d=.FALSE.).'
+          stop
+       end if
+       if (ltds) then
+          write(error_unit, *) 'tas_obs_mode=''psf2d'' currently does not support ltds=.TRUE..'
+          stop
+       end if
+       if (trim(psf_mode) /= 'analytic') then
+          write(error_unit, *) 'tas_obs_mode=''psf2d'' currently supports only psf_mode=''analytic''.'
+          stop
+       end if
+    end if
+    if (lresfunc2d_psf) then
+       if (.not. lresfunc) then
+          write(error_unit, *) 'lresfunc2d_psf requires lresfunc=.TRUE.'
+          stop
+       end if
+       if (trim(tas_mode) /= 'CN' .or. .not. tas_use_cn) then
+          write(error_unit, *) 'lresfunc2d_psf currently requires tas_mode=''CN'' and tas_use_cn=.TRUE..'
+          stop
+       end if
+       if (trim(psf_mode) /= 'analytic') then
+          write(error_unit, *) 'Only psf_mode=''analytic'' is currently supported.'
+          stop
+       end if
+       if (psf_window_q < 0 .or. psf_window_e < 0) then
+          write(error_unit, *) 'psf_window_q and psf_window_e should be non-negative.'
+          stop
+       end if
+       if (psf_sigma_q_default <= 0.d0 .or. psf_sigma_e_left_default <= 0.d0 .or. psf_sigma_e_right_default <= 0.d0) then
+          write(error_unit, *) 'Default PSF widths should be positive.'
+          stop
+       end if
+    end if
     ! to make the highest energy value reach ne*dE
     ne = ne+1
     
@@ -141,8 +237,8 @@ contains
     if (lresfunc) then
        if (.not. (functype .eq. "CNCS12" &
            .or. functype .eq. "CNCS20" &
-           .or. functype .eq. "HNTAS" &
-           .or. functype .eq. "CNTAS" &
+           .or. functype .eq. "Cuizhuhot" &
+           .or. functype .eq. "Cuizhucold" &
            .or. functype .eq. "poly")) then
           write(error_unit, *) "Error in input_parser: unknown resolution function type."
        stop
@@ -307,12 +403,27 @@ contains
     use variables, only: elements, nat, positions, born, masses2, sqesum, &
                          qlist, coh_b2, xray_b2, temps, cqlist, eigenvec, &
                          omega, fc_short, aff_a, aff_b, aff_c
+    use psf_2d_state, only: psf2d_free_state
     implicit none
     
-    deallocate(elements, nat, positions, born, masses2, sqesum, &
-               qlist, coh_b2, xray_b2, temps, cqlist, eigenvec, &
-               omega, fc_short, aff_a, aff_b, aff_c)
-
+    if (allocated(elements)) deallocate(elements)
+    if (allocated(nat)) deallocate(nat)
+    if (allocated(positions)) deallocate(positions)
+    if (allocated(born)) deallocate(born)
+    if (allocated(masses2)) deallocate(masses2)
+    if (allocated(sqesum)) deallocate(sqesum)
+    if (allocated(qlist)) deallocate(qlist)
+    if (allocated(coh_b2)) deallocate(coh_b2)
+    if (allocated(xray_b2)) deallocate(xray_b2)
+    if (allocated(temps)) deallocate(temps)
+    if (allocated(cqlist)) deallocate(cqlist)
+    if (allocated(eigenvec)) deallocate(eigenvec)
+    if (allocated(omega)) deallocate(omega)
+    if (allocated(fc_short)) deallocate(fc_short)
+    if (allocated(aff_a)) deallocate(aff_a)
+    if (allocated(aff_b)) deallocate(aff_b)
+    if (allocated(aff_c)) deallocate(aff_c)
+    call psf2d_free_state()
   end subroutine sqe_free
   
   ! read FORCE_CONSTANTS file, Phonopy

@@ -62,6 +62,10 @@ module control
   ! wavevector resolution along and perpendicular to the calculated path in conventional cell basics
   real(kind=8) :: path(3,3)
   ! phonon dispersion path used in SQE calculation
+  real(kind=8) :: u(3)
+  ! sample orientation vector used only by the TAS PSF 4D-resolution/PSF path
+  real(kind=8) :: v(3)
+  ! second sample orientation vector used only by the TAS PSF 4D-resolution/PSF path
   real(kind=8) :: q0(3)
   ! orgins of q-path
   real(kind=8) :: degauss
@@ -84,6 +88,24 @@ module control
   character(len=10) :: functype
   ! type of resolution function
   ! it can be "CNCS12", "CNCS20" and "poly"
+  character(len=16) :: tas_mode = 'none'
+  ! TAS resolution mode, e.g. 'none' or 'CN'
+  character(len=16) :: tas_fix_mode = 'Ef'
+  ! TAS fixed-energy mode, e.g. 'Ef' or 'Ei'
+  character(len=24) :: tas_obs_mode = 'linearized_4d'
+  ! TAS observed-spectrum mode: linearized_4d or psf2d
+  character(len=16) :: psf_mode = 'analytic'
+  ! 2D PSF source mode, currently only analytic is implemented
+  integer(kind=4) :: tas_mono_dir = -1
+  ! TAS monochromator sign convention, matching NeutronPy mono.dir
+  integer(kind=4) :: tas_sample_dir = 1
+  ! TAS sample sign convention, matching NeutronPy sample.dir
+  integer(kind=4) :: tas_ana_dir = -1
+  ! TAS analyzer sign convention, matching NeutronPy ana.dir
+  integer(kind=4) :: psf_window_q = 6
+  ! local 2D PSF convolution half-window along q, in q bins
+  integer(kind=4) :: psf_window_e = 12
+  ! local 2D PSF convolution half-window along energy, in energy bins
   !character(len=20) :: filename_2fc = "FORCE_CONSTANTS"
   ! filename of second-order force constants generated in format of PHONOPY
   
@@ -109,11 +131,53 @@ module control
   ! if .TRUE. read the second-order force constants in QE DFPT format
   logical :: lphase
   ! if .TRUE. consider phase from the dot product of qtransfer with atom position in cell
+  logical :: tas_use_cn = .FALSE.
+  ! explicit switch for Cooper-Nathans TAS resolution
+  logical :: tas_use_mosaic = .TRUE.
+  ! if .TRUE. include mosaic terms in TAS resolution
+  logical :: tas_debug_res = .FALSE.
+  ! if .TRUE. print extra information for TAS resolution debugging
+  logical :: lresfunc2d_psf = .FALSE.
+  ! if .TRUE. write additional debug outputs for the position-dependent 2D PSF path
+  logical :: lsave_intrinsic_slice = .FALSE.
+  ! if .TRUE. write the intrinsic/model slice used as 2D PSF input
+  logical :: lsave_psf_slice = .FALSE.
+  ! if .TRUE. write the 2D PSF-convolved slice
+  logical :: lsave_psf_params = .FALSE.
+  ! if .TRUE. write the local 2D PSF parameter fields
   !logical :: asr
   ! if .TRUE. perform acoustic sum rule for force constants
   !logical :: bornsym
   ! if .TRUE. csymmetrize the Born effective charges
 
+  real(kind=8) :: tas_e_fixed = 14.7d0
+  ! fixed incident or final energy in meV
+  real(kind=8) :: tas_coll_h_pre_mono = 40.d0
+  ! horizontal collimation before monochromator in arcmin
+  real(kind=8) :: tas_coll_h_pre_samp = 40.d0
+  ! horizontal collimation between monochromator and sample in arcmin
+  real(kind=8) :: tas_coll_h_post_samp = 40.d0
+  ! horizontal collimation between sample and analyzer in arcmin
+  real(kind=8) :: tas_coll_h_post_ana = 40.d0
+  ! horizontal collimation after analyzer in arcmin
+  real(kind=8) :: tas_mosaic_mono_h = 30.d0
+  ! monochromator horizontal mosaic in arcmin
+  real(kind=8) :: tas_mosaic_ana_h = 30.d0
+  ! analyzer horizontal mosaic in arcmin
+  real(kind=8) :: tas_mosaic_samp_h = 20.d0
+  ! sample horizontal mosaic in arcmin
+  real(kind=8) :: tas_dm = 3.355d0
+  ! monochromator d-spacing in angstrom
+  real(kind=8) :: tas_da = 3.355d0
+  ! analyzer d-spacing in angstrom
+  real(kind=8) :: psf_sigma_q_default = 1.d0
+  ! default q-direction width for 2D PSF fallback
+  real(kind=8) :: psf_sigma_e_left_default = 1.5d0
+  ! default left-side energy width for 2D PSF fallback
+  real(kind=8) :: psf_sigma_e_right_default = 1.5d0
+  ! default right-side energy width for 2D PSF fallback
+  real(kind=8) :: psf_shear_default = 0.d0
+  ! default shear for 2D PSF fallback
 end module control
 
 module phon

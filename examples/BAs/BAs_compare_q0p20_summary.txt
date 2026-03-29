@@ -1,0 +1,9 @@
+BAs compare summary
+Q range: 0.0 to 0.5
+Energy range: 0.0 to 120.0 meV
+Requested q cut: 0.2000
+Actual q cut: 0.202170
+Number of q points in window: 77
+Line-cut y-scale: log
+Difference y-scale: symlog (linthresh=1.836120e-02)
+Max abs difference at q-cut: 1.836120e+01

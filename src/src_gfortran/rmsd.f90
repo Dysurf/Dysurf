@@ -29,6 +29,7 @@ contains
     
     use phonon_spectra, only: DMsolver
     use func, only: fBE
+    use mpi_helper, only: mpi_rank
     use constants, only: hbar, ps2s, amu, a2m, thz2mev, eps4
     use variables, only: qmesh, natoms, nbands, ntemps, ntypes, nat, &
                          temps, armsd, elements, rlatvec, masses2, &
@@ -44,26 +45,34 @@ contains
     allocate(armsd(3,natoms,ntemps))
     
     if (read_rmsd) then
-       write(*,*) "Read RMSD from file ..."
-       write(*,*)
-       write(*,*) "RMSD at each temperature is:"
-       write(*,*)
+       if (mpi_rank == 0) then
+          write(*,*) "Read RMSD from file ..."
+          write(*,*)
+          write(*,*) "RMSD at each temperature is:"
+          write(*,*)
+       end if
        open(1, file=filename_rmsd, status="old")
        do ii = 1, ntemps
           read(1,*) T
-          write(*,"(A4,x,F5.1,x,A1)") "T =",T, "K"
+          if (abs(T - temps(ii)) .gt. 1.d-6 .and. mpi_rank == 0) then
+             write(*,"(A)") "Warning: RMSD file temperature does not match requested temperature."
+             write(*,"(A,F8.2,A,F8.2,A)") "Requested T = ", temps(ii), " K, file T = ", T, " K"
+          end if
+          if (mpi_rank == 0) write(*,"(A4,x,F5.1,x,A1)") "T =",T, "K"
           do jj = 1, natoms
              read(1,*) aux, armsd(:,jj,ii)
-             write(*,"(A4,x,3(F16.8,x))") aux, armsd(:,jj,ii)
+             if (mpi_rank == 0) write(*,"(A4,x,3(F16.8,x))") aux, armsd(:,jj,ii)
           end do
-          write(*,*)
+          if (mpi_rank == 0) write(*,*)
        end do
        close(1)
        return
     end if
     
-    write(*,*) "Start to compute RMSD ..."
-    write(*,*)
+    if (mpi_rank == 0) then
+       write(*,*) "Start to compute RMSD ..."
+       write(*,*)
+    end if
   
     ntot = qmesh(1)*qmesh(2)*qmesh(3)
     allocate(qzone(3,ntot), omegas(ntot,nbands), eigenvecs(ntot,nbands,nbands))
@@ -114,28 +123,32 @@ contains
     amsd = amsd*ps2s/amu/(a2m**2)
     armsd = sqrt(amsd)
 
-    write(*,*) "RMSD calculation finished."
-    write(*,*)
+    if (mpi_rank == 0) then
+       write(*,*) "RMSD calculation finished."
+       write(*,*)
+    end if
 
     ! write MSD into file
-    write(*,*) "Write RMSD into file ..."
-    write(*,*)
-    write(*,*) "RMSD at each temperature is:"
-    write(*,*)
+    if (mpi_rank == 0) then
+       write(*,*) "Write RMSD into file ..."
+       write(*,*)
+       write(*,*) "RMSD at each temperature is:"
+       write(*,*)
+    end if
     if (write_rmsd) then
        open(1, file=filename_rmsd, status="replace")
        do ii = 1, ntemps
           write(1,"(F7.2)") temps(ii)
-          write(*,"(A4,x,F5.1,x,A1)") "T =", temps(ii), "K"
+          if (mpi_rank == 0) write(*,"(A4,x,F5.1,x,A1)") "T =", temps(ii), "K"
           ll = 0
           do jj = 1, ntypes
              do kk = 1, nat(jj)
                 ll = ll+1
                 write(1,"(A4,x,3(F16.8,x))") elements(jj), armsd(:,ll,ii)
-                write(*,"(A4,x,3(F16.8,x))") elements(jj), armsd(:,ll,ii)
+                if (mpi_rank == 0) write(*,"(A4,x,3(F16.8,x))") elements(jj), armsd(:,ll,ii)
              end do
           end do
-          write(*,*)
+          if (mpi_rank == 0) write(*,*)
        end do
        close(1)
     end if

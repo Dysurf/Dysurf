@@ -17,16 +17,74 @@ In this distribution, it contains four subdirectories:
 
 - `/src/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
 
-```
-/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:51: undefined reference to `dgetri_'
-/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:61: undefined reference to `dnrm2_'
-/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:70: undefined reference to `dnrm2_'
-/usr/bin/ld: /home/davy/software/ds/Dysurf/src/src_gfortran/qpoints.f90:104: undefined reference to `dnrm2_'
-collect2: error: ld returned 1 exit status
-```
-Run `gfortran -g -O2 -ffree-line-length-none -fPIE -c dysurf.f90 -o dysurf` seems to resolve this problem. Or you may need to point to your own openblas path.
+If `OpenMPI` is available on your machine, you can also compile the MPI-enabled gfortran version in `/src/src_gfortran` and run Dysurf with `mpirun`.
 
 Choose any version that matches your local system environment.
+
+## Compilation
+
+The currently validated build paths are:
+
+### 1. gfortran + OpenBLAS
+
+```bash
+cd your_own_path/Dysurf/src/src_gfortran
+make
+```
+
+This builds the serial executables:
+
+- `dysurf`
+- `validate_psf2d_parametrization`
+
+### 2. gfortran + OpenMPI
+
+If `mpif90` and `mpirun` are available:
+
+```bash
+cd your_own_path/Dysurf/src/src_gfortran
+make mpi
+```
+
+Then examples can be run with commands such as:
+
+```bash
+mpirun -np 1 ./dysurf input.txt
+```
+
+### 3. Intel ifx + Intel MPI in conda
+
+One workable installation route is:
+
+```bash
+conda install -c https://software.repos.intel.com/python/conda/ -c conda-forge impi-devel
+conda install -c https://software.repos.intel.com/python/conda/ -c conda-forge ifx_linux-64
+```
+
+If you use a dedicated environment, for example `dysurf`, activate it first:
+
+```bash
+source /home/davy/miniconda3/etc/profile.d/conda.sh
+conda activate dysurf
+```
+
+Then build the Intel version:
+
+```bash
+cd your_own_path/Dysurf/src/src_intel
+make mpi
+```
+
+This now builds:
+
+- `dysurf`
+- `validate_psf2d_parametrization`
+
+Notes:
+
+- The current `src/src_intel` `Makefile` is configured to use `mpiifx` when `make mpi` is called.
+- If MKL is not present in the active environment, the Intel build currently falls back to system `lapack/openblas` for linking.
+- Running Intel-MPI executables should use the matching Intel MPI launcher from the same environment, rather than mixing them with a system OpenMPI `mpirun`.
 
 `/docs`: a user manual for description of running a calculation. In `/docs/Dysurf_online_version_manual` are manual for using Dysurf online version.
 
@@ -45,5 +103,3 @@ For computationally intensive tasks, please compile the source code and perform 
 If you find this code useful, we would appreciate a citation to: XXX (To be published)
 
 Hope you enjoy this program. Please do not hesitate to contact us if any problem rises.
-
-

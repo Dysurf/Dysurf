@@ -1,0 +1,34 @@
+&basic
+    ntypes=1
+    natoms=1
+    nsize=1 1 1
+/
+&inputsqe
+    nat=1
+    path=0.0 0.0 0.0  0.0 0.0 0.0  0.0 0.0 0.0
+    elements='Si'
+    q0=0.0 0.0 0.0
+    tas_mode='ABC'
+    tas_fix_mode='Ef'
+    tas_use_cn=.true.
+    tas_use_mosaic=.true.
+    tas_debug_res=.false.
+    tas_e_fixed=14.7
+    tas_coll_h_pre_mono=40.0
+    tas_coll_h_pre_samp=40.0
+    tas_coll_h_post_samp=40.0
+    tas_coll_h_post_ana=80.0
+    tas_mosaic_mono_h=30.0
+    tas_mosaic_ana_h=30.0
+    tas_mosaic_samp_h=20.0
+    tas_dm=3.355
+    tas_da=3.355
+/
+LATTICE_PARAMETERS
+1.0
+1.0 0.0 0.0
+0.0 1.0 0.0
+0.0 0.0 1.0
+ATOMIC_POSITIONS
+Cartesian
+0.0 0.0 0.0

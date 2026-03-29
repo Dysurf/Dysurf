@@ -1,0 +1,22 @@
+# Documentation-only parameter file for the hcol-only local PSF comparison
+
+# The plotting script selects one representative point automatically
+# from the base PSF shear field:
+#
+# 1. read ../2+H00_psf2d_minimal_acceptance/PSF_shear_base_300K.dat
+# 2. exclude a margin near the q and E boundaries
+# 3. choose the interior point with the largest absolute shear
+#
+# If the reference shear file is not available, the script can be adapted
+# to use a fixed fallback point.
+
+q0_hkl_start = [2.0, 0.0, 0.0]
+deltaH = 0.005
+deltaE = 0.05
+
+# Physical mapping used by the helper executable:
+# hkl = [2.0 + (iq-1)*0.005, 0.0, 0.0]
+# E0  = (iE-1)*0.05 meV
+
+# The actual selected point for one run is written to:
+#   psf2d_hcol_only_selection.txt
