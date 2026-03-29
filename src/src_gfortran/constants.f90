@@ -15,7 +15,6 @@
 !
 ! You should have received a copy of the GNU General Public License
 ! along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 ! Module that contains physical constants, atomic masses and coherent neutron scattering length
 
 module constants
