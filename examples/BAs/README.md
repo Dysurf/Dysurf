@@ -120,6 +120,6 @@ Current summary from [BAs_compare_q0p20_summary.txt]:
 
 ## Figure
 
-Embedded preview:
+As shown in upper panels of below figure, the overall difference between the calculations with and without the Born correction is not very large; however, its effect on the scattering intensity is still visible. For example, for the slice at q=0.2, a noticeable difference appears in the low-frequency phonon intensity(the lower-right panel). This is likely because the Born correction modifies the distribution of the optical branches to some extent, which in turn affects the distribution of S(Q, E).
 
-![BAs compare q0.20](./BAs_compare_q0p20.png)
+<img src="./BAs_compare_q0p20.png" alt="SQE at different BZ" width="90%" style="display: block; margin: 0 auto;">

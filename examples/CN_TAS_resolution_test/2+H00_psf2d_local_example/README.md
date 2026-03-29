@@ -1,11 +1,11 @@
-# background
+# Background
 The measured TAS intensity is affected not only by the intrinsic 
-𝑆(𝑄, 𝐸), but also by the instrumental resolution. In this code, two related descriptions are provided.
+𝑆(**𝑄**, 𝐸), but also by the instrumental resolution. In this code, two related descriptions are provided.
 
 The Cooper–Nathans (CN) method is the standard instrument-based TAS resolution formalism. It is useful for understanding how the experimental geometry, collimations, mosaics, and fixed-energy settings determine the resolution.
 
 The local 2D PSF method is a reduced representation of the local TAS resolution in the slice plane. It is useful for efficient convolution, visualization, and comparison between intrinsic and broadened 
-𝑆(𝑄, 𝐸) slices.
+𝑆(**𝑄**, 𝐸) slices.
 
 In short, CN is the more physical instrument-level description, while the PSF method is the more practical slice-level representation.
 
@@ -52,11 +52,11 @@ bash run_example.sh
 
 ## Figure
 
-The upper panels compare the original TAS resolution function obtained from the Cooper–Nathans (CN) method with the corresponding fitted sheared 2D PSF. Both show a very similar tilted elliptical shape in the local (𝑑𝑄, 𝑑𝐸) plane, indicating that the fitted PSF captures the main features of the original TAS resolution, including the widths in momentum and energy as well as the 𝑄–𝐸 correlation (shear/tilt).
+The upper panels compare the original TAS resolution function obtained from the Cooper–Nathans (CN) method with the corresponding fitted sheared 2D PSF. Both show a very similar tilted elliptical shape in the local (𝑑**𝑄**, 𝑑𝐸) plane, indicating that the fitted PSF captures the main features of the original TAS resolution, including the widths in momentum and energy as well as the **𝑄**–𝐸 correlation (shear/tilt).
 
 The lower panels show one-dimensional cuts along the momentum and energy directions. The fitted curves agree closely with the CN results, demonstrating that the local 2D PSF provides a good reduced representation of the full CN resolution for practical slice-based convolution and visualization.
 
 In short, the CN method gives the more complete instrument-based resolution description, while the fitted local 2D PSF offers a simpler and efficient approximation that is convenient for 2D 
-𝑆(𝑄, 𝐸) calculations.
+𝑆(**𝑄**, 𝐸) calculations.
 
-- [psf2d_example.png](./psf2d_example.png)
+<img src="./psf2d_example.png" alt="SQE at different BZ" width="90%" style="display: block; margin: 0 auto;">
