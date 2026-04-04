@@ -1,6 +1,6 @@
 # **Dysurf**, a program for simulating four-dimensional dynamical structure factors
 
-Version: 1.2
+## Version: 1.2
 
 Copyright (C) 2023-2025 Yongheng Li <davy_li96@163.com>
 
