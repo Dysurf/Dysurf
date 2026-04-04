@@ -3,7 +3,7 @@
 &basic
 ntypes = 2 
 natoms = 3
-nsize = 8 8 4
+nsize = 9 9 5
 /
 
 &inputsqe

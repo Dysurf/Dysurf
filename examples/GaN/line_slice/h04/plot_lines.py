@@ -74,4 +74,4 @@ ax.set_ylim([-3, 3])
 
 plt.tight_layout()
 # plt.show()
-plt.savefig("TA2_in_GaN_along_H04.png",dpi=600)
+plt.savefig("TA2_in_GaN_along_H04.jpg",dpi=650)

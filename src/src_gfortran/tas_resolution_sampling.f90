@@ -17,6 +17,7 @@
 ! along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ! Local fixed-grid 4D resolution sampling utilities.
 ! This module provides internal sampled-Q helpers derived from the local
+
 ! RM(4,4) description. It is not a user-facing observed-spectrum mode.
 module tas_resolution_sampling
 

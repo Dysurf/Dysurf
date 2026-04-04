@@ -9,24 +9,29 @@ USE_MPI ?= 0
 I_MPI_ROOT ?= $(CONDA_PREFIX)
 ifeq ($(USE_MPI),1)
 FC = mpiifx
+MPI_LINK_FLAGS =
 else
 FC = ifx
+MPI_LINK_FLAGS = -L$(I_MPI_ROOT)/lib/release -L$(I_MPI_ROOT)/lib \
+	-Xlinker --enable-new-dtags \
+	-Xlinker -rpath -Xlinker $(I_MPI_ROOT)/lib/release \
+	-Xlinker -rpath -Xlinker $(I_MPI_ROOT)/lib \
+	-lmpifort -lmpi -ldl -lrt -lpthread
 endif
 FCL = ${FC}
 
 MPI_INC = -I$(I_MPI_ROOT)/include/mpi -I$(I_MPI_ROOT)/include
-MPI_LIBS = -L$(I_MPI_ROOT)/lib/release -L$(I_MPI_ROOT)/lib -lmpifort -lmpi -ldl -lrt -lpthread
 
 FFLAGS = -traceback -debug -O2 -static-intel -fpp $(MPI_INC)
 
 MKL_RT_CANDIDATE := $(firstword $(wildcard $(CONDA_PREFIX)/lib/libmkl_rt.so) $(wildcard /opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so))
 ifeq ($(MKL_RT_CANDIDATE),)
-BLAS_LDFLAGS = -L/usr/lib/x86_64-linux-gnu/ -llapack -lopenblas -lm -lpthread
+BLAS_LDFLAGS = -llapack -lopenblas -lm -lpthread
 else
 BLAS_LDFLAGS = -L$(dir $(MKL_RT_CANDIDATE)) -qmkl
 endif
 
-LDFLAGS = $(BLAS_LDFLAGS) $(MPI_LIBS)
+LDFLAGS = $(MPI_LINK_FLAGS) $(BLAS_LDFLAGS)
 
 PROGRAM_SRCS = dysurf.f90 validate_psf2d_parametrization.f90
 FCSRC = $(filter-out $(PROGRAM_SRCS),$(wildcard *.f90))

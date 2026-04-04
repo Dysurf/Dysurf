@@ -13,7 +13,7 @@ Copyright (C) 2019-2025 Jiawang Hong <hongjw@bit.edu.cn>
 The Dysurf program is mainly written in Fortran 90 and use some Fortran 2003 extensions.
 In this distribution, it contains four subdirectories:
 
-- `/src/src_intel`: Fortran source codes of Dysurf program, this is intel mkl version.
+- `/src/src_intel`: Fortran source codes of Dysurf program, this is the Intel compiler version. It is intended to be built with `ifx` and Intel MPI.
 
 - `/src/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
 
@@ -25,21 +25,9 @@ Choose any version that matches your local system environment.
 
 The currently validated build paths are:
 
-### 1. gfortran + OpenBLAS
+### 1. gfortran + OpenMPI + OpenBLAS
 
-```bash
-cd your_own_path/Dysurf/src/src_gfortran
-make
-```
-
-This builds the serial executables:
-
-- `dysurf`
-- `validate_psf2d_parametrization`
-
-### 2. gfortran + OpenMPI
-
-If `mpif90` and `mpirun` are available:
+`mpif90` and `mpirun` should be available:
 
 ```bash
 cd your_own_path/Dysurf/src/src_gfortran
@@ -52,20 +40,20 @@ Then examples can be run with commands such as:
 mpirun -np 1 ./dysurf input.txt
 ```
 
-### 3. Intel ifx + Intel MPI in conda
+### 2. Intel ifx + Intel MPI in conda
 
-One workable installation route is:
+If you use a dedicated environment, activate it first:
+
+```bash
+source your_conda_path/etc/profile.d/conda.sh
+conda activate your_env_name
+```
+
+Then, One workable installation route is:
 
 ```bash
 conda install -c https://software.repos.intel.com/python/conda/ -c conda-forge impi-devel
 conda install -c https://software.repos.intel.com/python/conda/ -c conda-forge ifx_linux-64
-```
-
-If you use a dedicated environment, for example `dysurf`, activate it first:
-
-```bash
-source /home/davy/miniconda3/etc/profile.d/conda.sh
-conda activate dysurf
 ```
 
 Then build the Intel version:
@@ -84,7 +72,8 @@ Notes:
 
 - The current `src/src_intel` `Makefile` is configured to use `mpiifx` when `make mpi` is called.
 - If MKL is not present in the active environment, the Intel build currently falls back to system `lapack/openblas` for linking.
-- Running Intel-MPI executables should use the matching Intel MPI launcher from the same environment, rather than mixing them with a system OpenMPI `mpirun`.
+- When running Intel-built executables, use the matching Intel MPI launcher from the same environment.
+- Do not mix Intel MPI libraries with a system OpenMPI `mpirun`.
 
 `/docs`: a user manual for description of running a calculation. In `/docs/Dysurf_online_version_manual` are manual for using Dysurf online version.
 
