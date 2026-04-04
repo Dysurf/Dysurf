@@ -15,9 +15,7 @@ In this distribution, it contains four subdirectories:
 
 - `/src/src_intel`: Fortran source codes of Dysurf program, this is the Intel compiler version. It is intended to be built with `ifx` and Intel MPI.
 
-- `/src/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. Sometimes it return Errors as below:
-
-If `OpenMPI` is available on your machine, you can also compile the MPI-enabled gfortran version in `/src/src_gfortran` and run Dysurf with `mpirun`.
+- `/src/src_gfortran`: Fortran source codes of Dysurf program, this is gfortran openblas version. 
 
 Choose any version that matches your local system environment.
 
